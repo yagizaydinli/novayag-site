@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Novayag — Oyunlar</title>
+<meta name="description" content="Çengel Bulmaca, Issız Ada ve Kelime Yarışı. Telefonda oynanan üç Türkçe oyun.">
+<meta name="theme-color" content="#1a6ef5">
+<meta property="og:title" content="Novayag — Oyunlar">
+<meta property="og:description" content="Telefonda oynanan üç Türkçe oyun.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* =================================================================
+   Novayag — tek dosyalık landing page
+   Sabit duran telefon, sayfa indikçe içindeki oyun ve arka plan
+   rengi değişir. Oyun eklemek için: .panel + .screen + .deco üçlüsü
+   aynı sırayla eklenir, JS kendiliğinden eşleştirir.
+   ================================================================= */
+:root{
+  --ink:#0d1220;
+  --white:#ffffff;
+
+  /* her durak için arka plan + vurgu */
+  --c0:#1a6ef5;  --a0:#ffd23f;   /* giriş  — mavi   */
+  --c1:#2f6ae0;  --a1:#ffd23f;   /* çengel — mavi   */
+  --c2:#0fa89b;  --a2:#ffe07a;   /* ada    — turkuaz*/
+  --c3:#f4543c;  --a3:#ffe14d;   /* kelime — mercan */
+
+  --bg:var(--c0);
+  --accent:var(--a0);
+
+  --round:"Fredoka",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --sans:"Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+
+  --pad:clamp(1.25rem,4vw,3.5rem);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background-color:var(--bg);
+  color:var(--white);
+  font-family:var(--sans);
+  font-size:clamp(15px,.5vw + 14px,17px);
+  line-height:1.6;
+  overflow-x:hidden;
+  transition:background-color .8s cubic-bezier(.4,0,.2,1);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-spacing:-.025em}
+
+.wrap{max-width:1240px;margin:0 auto;padding-inline:var(--pad)}
+
+/* ---------------- üst bar ---------------- */
+.top{
+  position:relative;z-index:30;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding-block:1.5rem;
+}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.brand__dot{
+  width:34px;height:34px;border-radius:50%;flex:none;
+  background:var(--accent);
+  display:grid;place-items:center;
+  transition:background-color .8s cubic-bezier(.4,0,.2,1);
+}
+.brand__dot svg{width:19px;height:19px;display:block}
+.brand__name{font-family:var(--round);font-weight:600;font-size:1.2rem;letter-spacing:-.02em}
+.pill{
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.42rem .85rem;border-radius:999px;
+  border:1.5px solid rgba(255,255,255,.45);
+  font-size:.78rem;font-weight:500;text-decoration:none;
+  transition:background-color .25s ease,border-color .25s ease;
+}
+.pill:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.75)}
+.pill svg{width:12px;height:12px}
+
+/* ---------------- sahne ---------------- */
+.showcase{position:relative}
+.showcase__grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(1.5rem,4vw,4rem);
+  align-items:start;
+}
+
+/* sol: kayan metinler — telefon sağda dursun diye sütunlar açıkça yerleşir */
+.reel{position:relative;z-index:2;grid-column:1;grid-row:1}
+.panel{
+  min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding-block:clamp(2.5rem,9vh,5rem);
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5rem;align-self:flex-start;
+  padding:.35rem .8rem .4rem;border-radius:999px;
+  background:rgba(255,255,255,.16);
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  margin-bottom:1.4rem;
+}
+.panel h1,.panel h2{font-size:clamp(2.4rem,5.6vw,4.4rem);margin-bottom:1.1rem}
+.panel h1 em,.panel h2 em{
+  font-style:normal;color:var(--accent);
+  transition:color .8s cubic-bezier(.4,0,.2,1);
+}
+.panel p.lede{
+  font-size:clamp(1rem,.35vw + .95rem,1.12rem);
+  color:rgba(255,255,255,.86);max-width:40ch;margin:0 0 1.9rem;
+}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0 0 2rem;padding:0}
+.chips li{
+  padding:.4rem .85rem;border-radius:999px;
+  background:rgba(255,255,255,.15);
+  font-size:.8rem;font-weight:500;
+}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem}
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.85rem 1.5rem;border-radius:999px;
+  background:var(--white);color:var(--ink);
+  font-family:var(--round);font-weight:600;font-size:.95rem;
+  text-decoration:none;
+  box-shadow:0 8px 0 -2px rgba(0,0,0,.16);
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.btn:hover{transform:translateY(2px);box-shadow:0 5px 0 -2px rgba(0,0,0,.16)}
+.btn svg{width:17px;height:17px;flex:none}
+.pkg{font-family:var(--mono);font-size:.72rem;color:rgba(255,255,255,.6)}
+.scrollcue{
+  display:flex;align-items:center;gap:.6rem;margin-top:2.2rem;
+  font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);
+}
+.scrollcue svg{width:14px;height:14px;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+
+/* sağ: sabit telefon */
+.stage{
+  position:sticky;top:0;align-self:start;z-index:1;
+  grid-column:2;grid-row:1;
+  height:100vh;height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;
+}
+.rig{position:relative;display:grid;place-items:center}
+
+.phone{
+  position:relative;z-index:2;
+  width:min(310px,64vw);
+  aspect-ratio:9/19.2;
+  border-radius:42px;
+  padding:10px;
+  background:#0d1220;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,.14),
+    0 40px 70px -30px rgba(0,0,0,.55),
+    0 10px 26px -12px rgba(0,0,0,.4);
+}
+.phone::after{
+  content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);
+  width:86px;height:24px;border-radius:14px;background:#0d1220;z-index:5;
+}
+.phone__screen{position:relative;height:100%;width:100%;border-radius:33px;overflow:hidden;background:#000}
+.screen{
+  position:absolute;inset:0;
+  opacity:0;transform:scale(1.04);
+  transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);
+}
+.screen.is-active{opacity:1;transform:none}
+.screen svg{display:block;width:100%;height:100%}
+/* ekran kaydı bulunursa yer tutucunun üstüne biner */
+.screen__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
+.screen.has-video .screen__video{opacity:1}
+
+/* uçuşan çıkartmalar */
+.deco{position:absolute;inset:-8%;pointer-events:none;z-index:3}
+.deco > *{
+  position:absolute;
+  opacity:0;transform:scale(.5) translateY(14px);
+  transition:opacity .5s cubic-bezier(.34,1.4,.5,1),transform .5s cubic-bezier(.34,1.4,.5,1);
+}
+.deco.is-active > *{opacity:1;transform:none}
+.deco.is-active > *:nth-child(2){transition-delay:.09s}
+.deco.is-active > *:nth-child(3){transition-delay:.17s}
+.float{animation:float 5.5s ease-in-out infinite}
+.float--b{animation-duration:6.8s;animation-delay:-2s}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -11px}}
+.bubble{
+  background:var(--accent);color:var(--ink);
+  font-family:var(--round);font-weight:600;font-size:.95rem;
+  padding:.6rem 1rem;border-radius:16px;white-space:nowrap;
+  box-shadow:0 10px 22px -10px rgba(0,0,0,.45);
+}
+.bubble small{display:block;font-family:var(--mono);font-weight:400;font-size:.6rem;letter-spacing:.1em;opacity:.62;text-transform:uppercase}
+.blob{border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;box-shadow:0 10px 22px -10px rgba(0,0,0,.45)}
+
+/* ilerleme */
+.ticks{display:flex;gap:.4rem;list-style:none;margin:0;padding:0}
+.ticks li{width:26px;height:3px;border-radius:2px;background:rgba(255,255,255,.28);overflow:hidden}
+.ticks li span{display:block;height:100%;width:0;background:var(--white);transition:width .5s ease}
+.ticks li.on span{width:100%}
+
+/* noktalar */
+.dots{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.dots i{position:absolute;border-radius:50%;background:rgba(255,255,255,.22)}
+
+/* ---------------- alt ---------------- */
+.foot{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.22);margin-top:2rem;padding-block:2.5rem 3rem}
+.foot__grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);gap:2rem}
+.foot h2{font-size:1.6rem;margin-bottom:.5rem}
+.foot p{margin:0;color:rgba(255,255,255,.82);max-width:34ch;font-size:.92rem}
+.foot ul{list-style:none;margin:.5rem 0 0;padding:0;font-size:.88rem;line-height:2}
+.foot a{text-decoration:none;opacity:.82}
+.foot a:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+.foot .eyebrow{margin-bottom:.2rem}
+.foot__base{
+  margin-top:2.4rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.22);
+  display:flex;flex-wrap:wrap;gap:.4rem 1.5rem;justify-content:space-between;
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+}
+
+/* ---------------- ekran içi animasyonlar ---------------- */
+.screen:not(.is-active) *{animation-play-state:paused !important}
+
+/* NOT: SVG'de transform NİTELİĞİ taşıyan elemanlara CSS transform verilirse
+   nitelik ezilir ve eleman 0,0'a kaçar. Bu yüzden aşağıda transform yerine
+   bağımsız translate / rotate / scale özellikleri kullanılıyor; bunlar
+   nitelikteki konumun üstüne biner. */
+
+/* ana ekran */
+.hs-icon{animation:hsPop 5s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 50%}
+@keyframes hsPop{0%,72%,100%{scale:1}80%,88%{scale:1.07}}
+
+/* çengel */
+.cw-cell{opacity:0;animation:cwIn .3s ease forwards}
+@keyframes cwIn{to{opacity:1}}
+.cw-cursor{animation:cwMove 6s steps(1,end) infinite}
+@keyframes cwMove{
+  0%,16%{translate:0 0}      17%,33%{translate:34px 0}
+  34%,50%{translate:68px 0}  51%,67%{translate:102px 0}
+  68%,84%{translate:136px 0} 85%,100%{translate:136px 34px}
+}
+
+/* ada */
+.ia-bag{animation:iaX 3.4s cubic-bezier(.4,0,.9,.6) infinite}
+.ia-bag g{animation:iaY 3.4s cubic-bezier(.2,.7,.5,1) infinite;transform-box:fill-box;transform-origin:50% 50%}
+@keyframes iaX{0%{translate:0 0}55%,100%{translate:112px 0}}
+@keyframes iaY{
+  0%{translate:0 0;rotate:0deg}
+  30%{translate:0 -54px;rotate:140deg}
+  55%,100%{translate:0 6px;rotate:300deg}
+}
+.ia-pin{transform-box:fill-box;transform-origin:50% 100%;animation:iaFall 3.4s ease-out infinite}
+@keyframes iaFall{0%,55%{rotate:0deg;translate:0 0}72%,100%{rotate:var(--tip);translate:0 3px}}
+.ia-wave{animation:iaWave 5s ease-in-out infinite}
+@keyframes iaWave{0%,100%{translate:0 0}50%{translate:-9px 0}}
+
+/* kelime */
+.kw-tile{animation:kwPop 4.2s ease-in-out infinite}
+@keyframes kwPop{
+  0%,8%{fill:#221f1a;translate:0 0}
+  14%,52%{fill:#f4543c;translate:0 -3px}
+  60%,100%{fill:#221f1a;translate:0 0}
+}
+.kw-slot{opacity:0;animation:kwIn 4.2s ease-in-out infinite}
+@keyframes kwIn{0%,10%{opacity:0}18%,55%{opacity:1}62%,100%{opacity:0}}
+.kw-bar{animation:kwBar 4.2s linear infinite;transform-box:fill-box;transform-origin:0 50%}
+@keyframes kwBar{0%{scale:1 1}55%{scale:0 1}56%,100%{scale:1 1}}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important}
+  .screen,.deco > *,body{transition:none}
+  .cw-cell,.kw-slot{opacity:1}
+}
+
+/* ---------------- dar ekran ---------------- */
+@media (max-width:900px){
+  .showcase__grid{grid-template-columns:1fr;gap:0}
+  .reel{grid-column:1;grid-row:auto}
+  .stage{
+    grid-column:1;grid-row:auto;order:-1;
+    height:auto;top:0;gap:.9rem;
+    padding:.75rem 0 1.1rem;
+    background-color:var(--bg);
+    transition:background-color .8s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 16px 24px -20px rgba(0,0,0,.55);
+  }
+  /* telefon yüksekliğe göre sınırlanır, yoksa ekranı tek başına doldurur */
+  .phone{width:auto;height:min(42svh,340px);border-radius:30px;padding:7px}
+  .phone::after{width:60px;height:17px;top:14px;border-radius:10px}
+  .phone__screen{border-radius:24px}
+  .deco{display:none}
+  .panel{min-height:auto;padding-block:2.75rem}
+  .panel:first-child{padding-top:1.5rem}
+  .foot__grid{grid-template-columns:1fr;gap:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="dots" aria-hidden="true">
+  <i style="top:14%;left:6%;width:9px;height:9px"></i>
+  <i style="top:38%;left:47%;width:7px;height:7px"></i>
+  <i style="top:62%;left:3%;width:11px;height:11px"></i>
+  <i style="top:81%;left:52%;width:8px;height:8px"></i>
+  <i style="top:24%;left:93%;width:9px;height:9px"></i>
+</div>
+
+<header class="wrap top">
+  <a class="brand" href="#">
+    <span class="brand__dot">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#0d1220" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M4 18V6l16 12V6"/>
+      </svg>
+    </span>
+    <span class="brand__name">novayag</span>
+  </a>
+  <a class="pill" href="#iletisim">
+    İletişim
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+  </a>
+</header>
+
+<main class="wrap showcase">
+  <div class="showcase__grid">
+
+    <!-- ---------- sabit telefon ---------- -->
+    <div class="stage">
+      <div class="rig">
+
+        <!-- çıkartmalar -->
+        <div class="deco is-active" data-deco="0" aria-hidden="true">
+          <div class="bubble float" style="top:6%;left:-14%">3 oyun<small>google play</small></div>
+          <div class="blob float float--b" style="bottom:14%;right:-11%;width:62px;height:62px">
+            <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#1a6ef5" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </div>
+        <div class="deco" data-deco="1" aria-hidden="true">
+          <div class="bubble float" style="top:4%;right:-16%">Büyük punto<small>gözü yormaz</small></div>
+          <div class="blob float float--b" style="bottom:18%;left:-12%;width:66px;height:66px">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#2f6ae0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>
+          </div>
+        </div>
+        <div class="deco" data-deco="2" aria-hidden="true">
+          <div class="bubble float" style="top:5%;left:-15%">Oda kodu<small>arkadaş maçı</small></div>
+          <div class="blob float float--b" style="bottom:16%;right:-12%;width:64px;height:64px">
+            <svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true">
+              <circle cx="16" cy="16" r="14" fill="#0fa89b"/>
+              <path d="M16 2a14 14 0 0 0-9.9 23.9L16 16Z" fill="#ffe07a"/>
+              <path d="M30 16A14 14 0 0 0 16 2v14Z" fill="#fff" opacity=".85"/>
+            </svg>
+          </div>
+        </div>
+        <div class="deco" data-deco="3" aria-hidden="true">
+          <div class="bubble float" style="top:6%;right:-14%">+50<small>ilk kapan alır</small></div>
+          <div class="blob float float--b" style="bottom:15%;left:-12%;width:62px;height:62px">
+            <span style="font-family:var(--round);font-weight:700;font-size:1.7rem;color:#f4543c">K</span>
+          </div>
+        </div>
+
+        <div class="phone">
+          <div class="phone__screen">
+
+            <!-- 0 — ana ekran -->
+            <article class="screen is-active" data-screen="0">
+              <svg viewBox="0 0 300 640" role="img" aria-label="Üç oyunun yüklü olduğu telefon ana ekranı">
+                <defs>
+                  <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0" stop-color="#12224a"/><stop offset="1" stop-color="#0d1220"/>
+                  </linearGradient>
+                </defs>
+                <rect width="300" height="640" fill="url(#wall)"/>
+                <text x="150" y="118" font-family="Fredoka,sans-serif" font-size="46" fill="#fff" text-anchor="middle" font-weight="600">21:04</text>
+                <text x="150" y="146" font-family="monospace" font-size="11" fill="#8fa4d4" text-anchor="middle" letter-spacing="1.6">SALI, 27 AĞUSTOS</text>
+
+                <g class="hs-icon" style="animation-delay:0s" transform="translate(38,236)">
+                  <rect width="66" height="66" rx="18" fill="#2f6ae0"/>
+                  <g fill="#fff"><rect x="14" y="14" width="12" height="12" rx="2"/><rect x="28" y="14" width="12" height="12" rx="2" opacity=".45"/><rect x="42" y="14" width="12" height="12" rx="2"/><rect x="14" y="28" width="12" height="12" rx="2" opacity=".45"/><rect x="28" y="28" width="12" height="12" rx="2"/><rect x="42" y="28" width="12" height="12" rx="2" opacity=".45"/><rect x="14" y="42" width="12" height="12" rx="2"/><rect x="28" y="42" width="12" height="12" rx="2" opacity=".45"/><rect x="42" y="42" width="12" height="12" rx="2"/></g>
+                  <text x="33" y="86" font-family="Space Grotesk,sans-serif" font-size="10" fill="#dbe4fa" text-anchor="middle">Çengel</text>
+                </g>
+                <g class="hs-icon" style="animation-delay:.15s" transform="translate(117,236)">
+                  <rect width="66" height="66" rx="18" fill="#0fa89b"/>
+                  <circle cx="33" cy="30" r="15" fill="#ffe07a"/><circle cx="33" cy="30" r="8" fill="#0fa89b"/>
+                  <path d="M6 52c8-6 14 4 22-1s14 5 22-1 10 3 10 3v14H6Z" fill="#ffe9b8"/>
+                  <text x="33" y="86" font-family="Space Grotesk,sans-serif" font-size="10" fill="#dbe4fa" text-anchor="middle">Issız Ada</text>
+                </g>
+                <g class="hs-icon" style="animation-delay:.3s" transform="translate(196,236)">
+                  <rect width="66" height="66" rx="18" fill="#f4543c"/>
+                  <text x="33" y="45" font-family="Fredoka,sans-serif" font-weight="700" font-size="30" fill="#fff" text-anchor="middle">K</text>
+                  <text x="33" y="86" font-family="Space Grotesk,sans-serif" font-size="10" fill="#dbe4fa" text-anchor="middle">Kelime</text>
+                </g>
+
+                <rect x="26" y="536" width="248" height="76" rx="26" fill="#ffffff" opacity=".1"/>
+                <g opacity=".5">
+                  <rect x="46" y="552" width="44" height="44" rx="13" fill="#8fa4d4"/>
+                  <rect x="106" y="552" width="44" height="44" rx="13" fill="#8fa4d4"/>
+                  <rect x="166" y="552" width="44" height="44" rx="13" fill="#8fa4d4"/>
+                  <rect x="226" y="552" width="30" height="44" rx="13" fill="#8fa4d4"/>
+                </g>
+              </svg>
+            </article>
+
+            <!-- 1 — Çengel Bulmaca -->
+            <article class="screen" data-screen="1">
+              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="media/cengel.mp4" type="video/mp4">
+              </video>
+              <svg viewBox="0 0 300 640" role="img" aria-label="Çengel Bulmaca oyun ekranı">
+                <rect width="300" height="640" fill="#f7f4ec"/>
+                <rect width="300" height="76" fill="#2f6ae0"/>
+                <text x="24" y="50" font-family="Fredoka,sans-serif" font-weight="600" font-size="21" fill="#fff">Çengel Bulmaca</text>
+                <text x="24" y="106" font-family="monospace" font-size="11" fill="#8a8271" letter-spacing="1.5">GÜN 12 · 4/9 KELİME</text>
+
+                <g transform="translate(24,126)">
+                  <rect width="170" height="204" fill="#fff" stroke="#c9c1ad"/>
+                  <rect x="34" y="0" width="34" height="34" fill="#0d1220"/>
+                  <rect x="136" y="34" width="34" height="34" fill="#0d1220"/>
+                  <rect x="0" y="102" width="34" height="34" fill="#0d1220"/>
+                  <rect x="102" y="136" width="34" height="34" fill="#0d1220"/>
+                  <rect x="68" y="170" width="34" height="34" fill="#0d1220"/>
+                  <g stroke="#c9c1ad" stroke-width="1">
+                    <path d="M34 0V204M68 0V204M102 0V204M136 0V204"/>
+                    <path d="M0 34H170M0 68H170M0 102H170M0 136H170M0 170H170"/>
+                  </g>
+                  <g font-family="Fredoka,sans-serif" font-weight="600" font-size="19" fill="#0d1220" text-anchor="middle">
+                    <text class="cw-cell" style="animation-delay:.2s"  x="17"  y="24">K</text>
+                    <text class="cw-cell" style="animation-delay:.5s"  x="51"  y="58">A</text>
+                    <text class="cw-cell" style="animation-delay:.8s"  x="85"  y="24">L</text>
+                    <text class="cw-cell" style="animation-delay:1.1s" x="119" y="24">E</text>
+                    <text class="cw-cell" style="animation-delay:1.4s" x="153" y="24">M</text>
+                    <text class="cw-cell" style="animation-delay:1.8s" x="17"  y="58">A</text>
+                    <text class="cw-cell" style="animation-delay:2.1s" x="17"  y="92">R</text>
+                    <text class="cw-cell" style="animation-delay:2.4s" x="85"  y="92">İ</text>
+                    <text class="cw-cell" style="animation-delay:2.7s" x="119" y="126">N</text>
+                  </g>
+                  <rect class="cw-cursor" width="34" height="34" fill="none" stroke="#f4543c" stroke-width="3"/>
+                </g>
+
+                <text x="24" y="372" font-family="monospace" font-size="11" fill="#8a8271" letter-spacing="1.5">SOLDAN SAĞA</text>
+                <text x="24" y="400" font-family="Fredoka,sans-serif" font-size="17" fill="#0d1220">3. Yazı aracı</text>
+                <text x="24" y="428" font-family="Fredoka,sans-serif" font-size="17" fill="#8a8271">5. Denizin rengi</text>
+
+                <g transform="translate(24,474)">
+                  <g fill="#fff" stroke="#c9c1ad">
+                    <rect width="46" height="38" rx="9"/><rect x="52" width="46" height="38" rx="9"/>
+                    <rect x="104" width="46" height="38" rx="9"/><rect x="156" width="46" height="38" rx="9"/>
+                    <rect x="208" width="44" height="38" rx="9"/>
+                    <rect y="46" width="46" height="38" rx="9"/><rect x="52" y="46" width="46" height="38" rx="9"/>
+                    <rect x="104" y="46" width="46" height="38" rx="9"/><rect x="156" y="46" width="46" height="38" rx="9"/>
+                    <rect x="208" y="46" width="44" height="38" rx="9"/>
+                  </g>
+                  <g font-family="Fredoka,sans-serif" font-size="17" fill="#0d1220" text-anchor="middle">
+                    <text x="23" y="25">E</text><text x="75" y="25">R</text><text x="127" y="25">T</text><text x="179" y="25">Y</text><text x="230" y="25">U</text>
+                    <text x="23" y="71">A</text><text x="75" y="71">S</text><text x="127" y="71">D</text><text x="179" y="71">F</text><text x="230" y="71">G</text>
+                  </g>
+                </g>
+              </svg>
+            </article>
+
+            <!-- 2 — Issız Ada -->
+            <article class="screen" data-screen="2">
+              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="media/issizada.mp4" type="video/mp4">
+              </video>
+              <svg viewBox="0 0 300 640" role="img" aria-label="Issız Ada oyun ekranı">
+                <defs>
+                  <linearGradient id="gok" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#7fd0e6"/><stop offset="1" stop-color="#dff0e9"/>
+                  </linearGradient>
+                </defs>
+                <rect width="300" height="640" fill="url(#gok)"/>
+                <circle cx="238" cy="92" r="30" fill="#ffe07a"/>
+                <rect y="290" width="300" height="86" fill="#0fa89b"/>
+                <g class="ia-wave" opacity=".45" fill="#bfeae6">
+                  <rect y="304" width="330" height="3" rx="1.5"/>
+                  <rect x="-20" y="332" width="330" height="3" rx="1.5"/>
+                  <rect y="356" width="330" height="3" rx="1.5"/>
+                </g>
+                <rect y="376" width="300" height="264" fill="#efdcae"/>
+                <ellipse cx="150" cy="380" rx="180" ry="16" fill="#f6e8c6"/>
+
+                <g transform="translate(150,408)">
+                  <rect x="-84" y="52" width="168" height="9" rx="4" fill="#a9784a"/>
+                  <rect x="-74" y="61" width="9" height="34" fill="#8d6139"/>
+                  <rect x="65" y="61" width="9" height="34" fill="#8d6139"/>
+                  <g fill="#fbf7ee" stroke="#d8cbb0">
+                    <g class="ia-pin" style="--tip:-74deg;animation-delay:0s"   transform="translate(-64,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
+                    <g class="ia-pin" style="--tip:-52deg;animation-delay:.06s" transform="translate(-32,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
+                    <g class="ia-pin" style="--tip:18deg;animation-delay:.02s"  transform="translate(0,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
+                    <g class="ia-pin" style="--tip:58deg;animation-delay:.1s"   transform="translate(32,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
+                    <g class="ia-pin" style="--tip:80deg;animation-delay:.16s"  transform="translate(64,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
+                  </g>
+                </g>
+
+                <g class="ia-bag" transform="translate(58,512)">
+                  <g><ellipse rx="13" ry="10" fill="#c9954f" stroke="#9c6f34" stroke-width="2"/><path d="M-5-8h10" stroke="#9c6f34" stroke-width="2"/></g>
+                </g>
+
+                <rect width="300" height="62" fill="#0b3b3d" opacity=".85"/>
+                <text x="20" y="27" font-family="monospace" font-size="10" fill="#7fd0e6" letter-spacing="1.4">SEN</text>
+                <text x="20" y="49" font-family="Fredoka,sans-serif" font-weight="600" font-size="20" fill="#fff">3</text>
+                <text x="280" y="27" font-family="monospace" font-size="10" fill="#f5a9a0" letter-spacing="1.4" text-anchor="end">RAKİP</text>
+                <text x="280" y="49" font-family="Fredoka,sans-serif" font-weight="600" font-size="20" fill="#fff" text-anchor="end">2</text>
+                <text x="150" y="42" font-family="monospace" font-size="11" fill="#dff0e9" text-anchor="middle">LABUT DEVİRME</text>
+
+                <rect x="82" y="582" width="136" height="38" rx="19" fill="#0b3b3d" opacity=".85"/>
+                <text x="150" y="606" font-family="monospace" font-size="10" fill="#dff0e9" text-anchor="middle" letter-spacing="1.2">BASILI TUT &amp; FIRLAT</text>
+              </svg>
+            </article>
+
+            <!-- 3 — Kelime Yarışı -->
+            <article class="screen" data-screen="3">
+              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="media/kelime.mp4" type="video/mp4">
+              </video>
+              <svg viewBox="0 0 300 640" role="img" aria-label="Kelime Yarışı oyun ekranı">
+                <rect width="300" height="640" fill="#17150f"/>
+                <text x="24" y="46" font-family="monospace" font-size="10" fill="#8b8272" letter-spacing="1.6">TUR 4 · ODA 21</text>
+                <rect x="24" y="62" width="252" height="5" rx="2.5" fill="#2e2a21"/>
+                <rect class="kw-bar" x="24" y="62" width="252" height="5" rx="2.5" fill="#f4543c"/>
+
+                <text x="24" y="114" font-family="monospace" font-size="10" fill="#8b8272" letter-spacing="1.6">KAPILAN KELİME</text>
+                <g font-family="Fredoka,sans-serif" font-weight="600" font-size="32" fill="#f5efe2">
+                  <text class="kw-slot" style="animation-delay:0s"   x="24"  y="156">K</text>
+                  <text class="kw-slot" style="animation-delay:.14s" x="60"  y="156">A</text>
+                  <text class="kw-slot" style="animation-delay:.28s" x="96"  y="156">L</text>
+                  <text class="kw-slot" style="animation-delay:.42s" x="132" y="156">E</text>
+                  <text class="kw-slot" style="animation-delay:.56s" x="168" y="156">M</text>
+                </g>
+                <line x1="24" y1="180" x2="276" y2="180" stroke="#2e2a21"/>
+
+                <g font-family="monospace" font-size="12">
+                  <text x="24" y="216" fill="#f5efe2">sen</text>
+                  <text x="276" y="216" fill="#f4543c" text-anchor="end">148</text>
+                  <text x="24" y="246" fill="#8b8272">deniz_44</text>
+                  <text x="276" y="246" fill="#8b8272" text-anchor="end">131</text>
+                  <text x="24" y="276" fill="#8b8272">mert</text>
+                  <text x="276" y="276" fill="#8b8272" text-anchor="end">96</text>
+                </g>
+
+                <g transform="translate(37,334)">
+                  <g>
+                    <rect class="kw-tile" style="animation-delay:0s"   width="66" height="66" rx="16"/>
+                    <rect class="kw-tile" style="animation-delay:.14s" x="80" width="66" height="66" rx="16"/>
+                    <rect class="kw-tile" style="animation-delay:.28s" x="160" width="66" height="66" rx="16"/>
+                    <rect class="kw-tile" style="animation-delay:.42s" y="80" width="66" height="66" rx="16"/>
+                    <rect class="kw-tile" style="animation-delay:.56s" x="80" y="80" width="66" height="66" rx="16"/>
+                    <rect x="160" y="80" width="66" height="66" rx="16" fill="#221f1a"/>
+                    <rect y="160" width="66" height="66" rx="16" fill="#221f1a"/>
+                    <rect x="80" y="160" width="66" height="66" rx="16" fill="#221f1a"/>
+                    <rect x="160" y="160" width="66" height="66" rx="16" fill="#221f1a"/>
+                  </g>
+                  <g font-family="Fredoka,sans-serif" font-weight="600" font-size="26" fill="#f5efe2" text-anchor="middle">
+                    <text x="33" y="44">K</text><text x="113" y="44">A</text><text x="193" y="44">L</text>
+                    <text x="33" y="124">E</text><text x="113" y="124">M</text><text x="193" y="124">T</text>
+                    <text x="33" y="204">R</text><text x="113" y="204">S</text><text x="193" y="204">İ</text>
+                  </g>
+                </g>
+
+                <rect x="37" y="590" width="226" height="34" rx="17" fill="#f4543c"/>
+                <text x="150" y="612" font-family="monospace" font-size="10" fill="#17150f" text-anchor="middle" letter-spacing="1.4">KAP</text>
+              </svg>
+            </article>
+
+          </div>
+        </div>
+      </div>
+
+      <ol class="ticks" aria-hidden="true">
+        <li class="on"><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li>
+      </ol>
+    </div>
+
+    <!-- ---------- kayan metinler ---------- -->
+    <div class="reel">
+
+      <section class="panel" data-index="0">
+        <span class="eyebrow">Novayag · Android</span>
+        <h1>Üç oyun.<br>Hepsi telefonda,<br>hepsi <em>Türkçe</em>.</h1>
+        <p class="lede">Çengel bulmacadan kelime kapmacaya, kumsalda labut devirmeye. Hepsi Google Play'de, hepsi ücretsiz.</p>
+        <div class="scrollcue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          Kaydırın, sırayla açılsın
+        </div>
+      </section>
+
+      <section class="panel" data-index="1">
+        <span class="eyebrow">Bulmaca · Tek kişilik</span>
+        <h2>Her güne<br><em>bir bulmaca</em>.</h2>
+        <p class="lede">Klasik gazete çengel bulmacası, gözünüzü yormadan. Büyük punto, yüksek kontrast, dört kata kadar büyütme. Hesap açmak yok — açın ve çözmeye başlayın.</p>
+        <ul class="chips"><li>30 bulmaca</li><li>Çevrimdışı</li><li>Hesap gerekmez</li></ul>
+        <div class="actions">
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.novayag.cengel">
+            Google Play'de aç
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="pkg">com.novayag.cengel</span>
+        </div>
+      </section>
+
+      <section class="panel" data-index="2">
+        <span class="eyebrow">Atış · Online</span>
+        <h2>Kumsalda<br><em>karşılıklı atış</em>.</h2>
+        <p class="lede">Kum torbasıyla masadaki labutları devirin ya da çubuk fırlatıp raflardaki topları düşürün. Rastgele eşleşin, ya da oda kodunu paylaşıp arkadaşınızla oynayın.</p>
+        <ul class="chips"><li>İki oyun modu</li><li>Online eşleşme</li><li>Oda koduyla arkadaş maçı</li><li>tr · en · ru</li></ul>
+        <div class="actions">
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada">
+            Google Play'de aç
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="pkg">com.yagizaydinli.issizada</span>
+        </div>
+      </section>
+
+      <section class="panel" data-index="3">
+        <span class="eyebrow">Kelime · Online</span>
+        <h2>Dokuz harf.<br><em>İlk kapan alır</em>.</h2>
+        <p class="lede">Sayılı saniye içinde kelimeyi bulun ve önce siz kapın. Rakipler gerçek zamanlı; masa boşsa insan temposunda oynayan botlar devreye giriyor, beklemiyorsunuz.</p>
+        <ul class="chips"><li>Dokuz harf</li><li>Gerçek zamanlı</li><li>Otoriter sunucu</li></ul>
+        <div class="actions">
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.yagiz.kelimekapmaca">
+            Google Play'de aç
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="pkg">com.yagiz.kelimekapmaca</span>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="foot wrap" id="iletisim">
+  <div class="foot__grid">
+    <div>
+      <h2>Novayag</h2>
+      <p>Android için küçük oyunlar. Bir hata bulursanız ya da bir fikriniz varsa yazın — hepsini okuyorum.</p>
+    </div>
+    <div>
+      <span class="eyebrow">Oyunlar</span>
+      <ul>
+        <li><a href="https://play.google.com/store/apps/details?id=com.novayag.cengel">Çengel Bulmaca</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada">Issız Ada</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.yagiz.kelimekapmaca">Kelime Yarışı</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="eyebrow">Bağlantı</span>
+      <ul>
+        <li><a href="mailto:iletisim@novayag.com">iletisim@novayag.com</a></li>
+        <li><a href="/gizlilik/">Gizlilik politikası</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot__base">
+    <span>© 2026 Novayag</span>
+    <span>Google Play ve Android, Google LLC'nin ticari markalarıdır</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var screens = [].slice.call(document.querySelectorAll('.screen'));
+  var decos   = [].slice.call(document.querySelectorAll('.deco'));
+  var panels  = [].slice.call(document.querySelectorAll('.panel'));
+  var ticks   = [].slice.call(document.querySelectorAll('.ticks li'));
+  var root    = document.documentElement;
+  var meta    = document.querySelector('meta[name="theme-color"]');
+  var css     = getComputedStyle(root);
+  var current = -1;
+
+  function show(i){
+    if(i === current) return;
+    current = i;
+
+    screens.forEach(function(s,n){
+      var on = n === i;
+      s.classList.toggle('is-active', on);
+      var v = s.querySelector('.screen__video');
+      if(v && v.readyState > 1){ on ? v.play().catch(function(){}) : v.pause(); }
+    });
+    decos.forEach(function(d,n){ d.classList.toggle('is-active', n === i); });
+    ticks.forEach(function(t,n){ t.classList.toggle('on', n <= i); });
+
+    root.style.setProperty('--bg','var(--c' + i + ')');
+    root.style.setProperty('--accent','var(--a' + i + ')');
+    if(meta) meta.setAttribute('content', css.getPropertyValue('--c' + i).trim());
+  }
+
+  // Ekran kaydı gerçekten yüklenirse yer tutucunun üstünü kapatır.
+  screens.forEach(function(s){
+    var v = s.querySelector('.screen__video');
+    if(!v) return;
+    v.addEventListener('loadeddata', function(){
+      s.classList.add('has-video');
+      if(s.classList.contains('is-active')) v.play().catch(function(){});
+    });
+  });
+
+  if(!('IntersectionObserver' in window)){ show(0); return; }
+
+  // Ekranın orta bandı hangi bölümü kesiyorsa telefonda o durak görünür.
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting) show(+e.target.dataset.index);
+    });
+  }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+
+  panels.forEach(function(p){ io.observe(p); });
+  show(0);
+})();
+</script>
+</body>
+</html>
