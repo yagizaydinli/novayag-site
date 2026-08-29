@@ -12,5 +12,17 @@
         "73:8D:4D:96:B3:09:30:C3:4C:6C:3C:14:EA:3D:1A:EF:E2:45:52:FE:7D:28:B3:3E:3A:33:FB:04:28:04:AE:7F"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.yagiz.kelimekapmaca.test",
+      "sha256_cert_fingerprints": [
+        "73:8D:4D:96:B3:09:30:C3:4C:6C:3C:14:EA:3D:1A:EF:E2:45:52:FE:7D:28:B3:3E:3A:33:FB:04:28:04:AE:7F"
+      ]
+    }
   }
 ]
