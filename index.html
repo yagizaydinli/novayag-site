@@ -6,12 +6,15 @@
 <title>Novayag — Oyunlar</title>
 <meta name="description" content="Kelime Eşle, Kare Bulmaca, Petek, Çengel Bulmaca, Kelime Yarışı ve Issız Ada. Telefonda oynanan Türkçe oyunlar.">
 <meta name="theme-color" content="#1a6ef5">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="Novayag — Oyunlar">
 <meta property="og:description" content="Telefonda oynanan Türkçe oyunlar.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 /* =================================================================
    Novayag — tek dosyalık landing page
@@ -35,7 +38,7 @@
   --bg:var(--c0);
   --accent:var(--a0);
 
-  --round:"Fredoka",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --round:"Baloo 2",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --sans:"Space Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
 
@@ -55,7 +58,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 a{color:inherit}
-h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-spacing:-.025em}
+h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-spacing:-.02em}
 
 .wrap{max-width:1240px;margin:0 auto;padding-inline:var(--pad)}
 
@@ -66,6 +69,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
   padding-block:1.5rem;
 }
 .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none}
+.brand__logo{height:clamp(34px,5vw,46px);width:auto;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
 .brand__dot{
   width:34px;height:34px;border-radius:50%;flex:none;
   background:var(--accent);
@@ -168,7 +172,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
   content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);
   width:86px;height:24px;border-radius:14px;background:#0d1220;z-index:5;
 }
-.phone__screen{position:relative;height:100%;width:100%;border-radius:33px;overflow:hidden;background:#000}
+.phone__screen{position:relative;height:100%;width:100%;border-radius:33px;overflow:hidden;background:#000;container-type:size}
 .screen{
   position:absolute;inset:0;
   opacity:0;transform:scale(1.04);
@@ -230,18 +234,23 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 
 
 /* ---------------- oyun ekranı: gerçek ikon (oynanış kaydı gelene kadar) ---------------- */
-.splash{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;
+.splash{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6cqw;
   background:radial-gradient(120% 80% at 50% 30%,rgba(255,255,255,.28),transparent 60%),var(--sc,#1a6ef5)}
 .splash img{width:58%;aspect-ratio:1;border-radius:22%;box-shadow:0 18px 34px -14px rgba(0,0,0,.55);animation:splashIn 5s ease-in-out infinite}
-.splash b{font-family:var(--round);font-weight:600;font-size:1.35rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.25)}
-@keyframes splashIn{0%,100%{translate:0 0}50%{translate:0 -8px}}
-/* ana ekran ikonları */
+.splash b{font-family:var(--round);font-weight:700;font-size:8cqw;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+@keyframes splashIn{0%,100%{translate:0 0}50%{translate:0 -3cqw}}
+/* ana ekran ikonları — birimler telefon ekranına göre (cqw/cqh) */
 .home{position:absolute;inset:0;background:linear-gradient(135deg,#12224a,#0d1220);display:flex;flex-direction:column;align-items:center}
-.home__time{margin-top:22%;font-family:var(--round);font-weight:600;font-size:clamp(1.8rem,5.5vh,2.6rem);line-height:1}
-.home__date{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:#8fa4d4;margin-top:.4rem}
-.home__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9% 9%;margin-top:18%;width:80%}
-.home__grid span{display:flex;flex-direction:column;align-items:center;gap:.35rem;font-size:.6rem;color:#dbe4fa;text-align:center;line-height:1.2}
-.home__grid img{width:100%;aspect-ratio:1;border-radius:24%;box-shadow:0 8px 16px -8px rgba(0,0,0,.6);animation:hsPop 5s ease-in-out infinite}
+.home__time{margin-top:15cqh;font-family:var(--round);font-weight:700;font-size:17cqw;line-height:1}
+.home__date{font-family:var(--mono);font-size:3.4cqw;letter-spacing:.14em;color:#8fa4d4;margin-top:1.5cqw}
+.home__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:7cqw;row-gap:5cqw;margin-top:11cqh;width:78cqw}
+.home__grid span{display:flex;flex-direction:column;align-items:center;gap:1.8cqw;font-size:3.6cqw;color:#dbe4fa;text-align:center;line-height:1.15;min-width:0}
+.home__grid img{width:100%;aspect-ratio:1;border-radius:24%;box-shadow:0 2cqw 4cqw -2cqw rgba(0,0,0,.6);animation:hsPop 5s ease-in-out infinite}
+/* küçük telefon görselinde (dar ekran) ikon adları okunmaz: yalnız ikonlar, daha büyük */
+@container (max-width:220px){
+  .home__grid span{font-size:0;gap:0}
+  .home__grid{column-gap:9cqw;row-gap:9cqw;width:74cqw;margin-top:14cqh}
+}
 .btn--soon{background:rgba(255,255,255,.18);color:#fff;box-shadow:none;cursor:default}
 .btn--soon:hover{transform:none;box-shadow:none}
 .icon-lg{width:64px;height:64px;border-radius:16px;box-shadow:0 10px 22px -10px rgba(0,0,0,.45);margin-bottom:1.2rem}
@@ -297,13 +306,8 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 </div>
 
 <header class="wrap top">
-  <a class="brand" href="#">
-    <span class="brand__dot">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#0d1220" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M4 18V6l16 12V6"/>
-      </svg>
-    </span>
-    <span class="brand__name">novayag</span>
+  <a class="brand" href="#" aria-label="Novayag">
+    <img class="brand__logo" src="media/marka/logo_beyaz.png" alt="novayag" width="600" height="158">
   </a>
   <a class="pill" href="#iletisim">
     İletişim
@@ -320,7 +324,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 
         <!-- çıkartmalar -->
         <div class="deco is-active" data-deco="0" aria-hidden="true">
-          <div class="bubble float" style="top:6%;left:-14%">6 oyun<small>hepsi türkçe</small></div>
+          <div class="bubble float" style="top:6%;left:-14%">Hepsi Türkçe<small lang="en">android</small></div>
           <div class="blob float float--b" style="bottom:14%;right:-11%;width:62px;height:62px">
             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#1a6ef5" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </div>
@@ -460,8 +464,8 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
     <div class="reel">
 
       <section class="panel" data-index="0">
-        <span class="eyebrow">Novayag · Android</span>
-        <h1>Altı oyun.<br>Hepsi telefonda,<br>hepsi <em>Türkçe</em>.</h1>
+        <span class="eyebrow">Novayag · <span lang="en">Android</span></span>
+        <h1>Küçük oyunlar.<br>Hepsi telefonda,<br>hepsi <em>Türkçe</em>.</h1>
         <p class="lede">Kelime eşlemekten çapraz bulmacaya, kelime yarışından kumsalda labut devirmeye. Hepsi ücretsiz, hepsi Android'de. En yenisi en üstte.</p>
         <div class="scrollcue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
@@ -522,7 +526,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 
       <section class="panel" data-index="5">
         <img class="icon-lg" src="media/ikon/kelime-yarisi.png" alt="Kelime Yarışı ikonu" width="64" height="64">
-        <span class="eyebrow">Kelime · Online</span>
+        <span class="eyebrow">Kelime · <span lang="en">Online</span></span>
         <h2>Dokuz harf.<br><em>İlk kapan alır</em>.</h2>
         <p class="lede">Sayılı saniye içinde kelimeyi bulun ve önce siz kapın. Rakipler gerçek zamanlı; masa boşsa insan temposunda oynayan botlar devreye giriyor, beklemiyorsunuz.</p>
         <ul class="chips"><li>Dokuz harf</li><li>Gerçek zamanlı</li><li>Otoriter sunucu</li></ul>
@@ -537,7 +541,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 
       <section class="panel" data-index="6">
         <img class="icon-lg" src="media/ikon/issizada.png" alt="Issız Ada ikonu" width="64" height="64">
-        <span class="eyebrow">Atış · Online</span>
+        <span class="eyebrow">Atış · <span lang="en">Online</span></span>
         <h2>Kumsalda<br><em>karşılıklı atış</em>.</h2>
         <p class="lede">Kum torbasıyla masadaki labutları devirin ya da çubuk fırlatıp raflardaki topları düşürün. Rastgele eşleşin, ya da oda kodunu paylaşıp arkadaşınızla oynayın.</p>
         <ul class="chips"><li>İki oyun modu</li><li>Online eşleşme</li><li>Oda koduyla arkadaş maçı</li><li>tr · en · ru</li></ul>
@@ -581,7 +585,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
   </div>
   <div class="foot__base">
     <span>© 2026 Novayag</span>
-    <span>Google Play ve Android, Google LLC'nin ticari markalarıdır</span>
+    <span><span lang="en">Google Play</span> ve <span lang="en">Android</span>, <span lang="en">Google LLC</span>'nin ticari markalarıdır</span>
   </div>
 </footer>
 
