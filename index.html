@@ -444,9 +444,6 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
                 <img src="media/ikon/issizada.png" alt="">
                 <b>Issız Ada</b>
               </div>
-              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
-                <source src="media/issizada.mp4" type="video/mp4">
-              </video>
             </article>
 
           </div>
@@ -615,7 +612,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       var on = n === i;
       s.classList.toggle('is-active', on);
       var v = s.querySelector('.screen__video');
-      if(v && v.readyState > 1){ on ? v.play().catch(function(){}) : v.pause(); }
+      if(v){ on ? v.play().catch(function(){}) : v.pause(); }
     });
     decos.forEach(function(d,n){ d.classList.toggle('is-active', n === i); });
     ticks.forEach(function(t,n){ t.classList.toggle('on', n <= i); });
@@ -629,10 +626,13 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
   screens.forEach(function(s){
     var v = s.querySelector('.screen__video');
     if(!v) return;
-    v.addEventListener('loadeddata', function(){
+    function ready(){
       s.classList.add('has-video');
       if(s.classList.contains('is-active')) v.play().catch(function(){});
-    });
+    }
+    // video betikten önce yüklenmiş olabilir: olayı kaçırmamak için durumu da kontrol et
+    if(v.readyState >= 2) ready(); else v.addEventListener('loadeddata', ready);
+    v.addEventListener('playing', function(){ s.classList.add('has-video'); });
   });
 
   if(!('IntersectionObserver' in window)){ show(0); return; }
