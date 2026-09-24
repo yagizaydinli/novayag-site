@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Novayag — Oyunlar</title>
-<meta name="description" content="Kelime Eşle, Kare Bulmaca, Petek, Çengel Bulmaca, Kelime Yarışı ve Issız Ada. Telefonda oynanan Türkçe oyunlar.">
+<meta name="description" content="Kelime Eşle, Kare Bulmaca, Petek, Çengel Bulmaca, Kelime Yarışı ve Issız Ada. Türkçe için tasarlanmış kelime, bulmaca ve rekabet oyunları.">
 <meta name="theme-color" content="#1a6ef5">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta property="og:title" content="Novayag — Oyunlar">
-<meta property="og:description" content="Telefonda oynanan Türkçe oyunlar.">
+<meta property="og:description" content="Türkçe için tasarlanmış kelime, bulmaca ve rekabet oyunları.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -160,7 +160,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
   position:relative;z-index:2;
   width:min(310px,64vw);
   aspect-ratio:9/19.2;
-  border-radius:42px;
+  border-radius:13.5% / 6.5%;   /* orantılı: küçük telefonda da aynı biçim */
   padding:10px;
   background:#0d1220;
   box-shadow:
@@ -169,10 +169,10 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
     0 10px 26px -12px rgba(0,0,0,.4);
 }
 .phone::after{
-  content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);
-  width:86px;height:24px;border-radius:14px;background:#0d1220;z-index:5;
+  content:"";position:absolute;top:3.3%;left:50%;transform:translateX(-50%);
+  width:28%;height:3.8%;border-radius:999px;background:#0d1220;z-index:5;
 }
-.phone__screen{position:relative;height:100%;width:100%;border-radius:33px;overflow:hidden;background:#000;container-type:size}
+.phone__screen{position:relative;height:100%;width:100%;border-radius:11% / 5.2%;overflow:hidden;background:#000;container-type:size}
 .screen{
   position:absolute;inset:0;
   opacity:0;transform:scale(1.04);
@@ -285,9 +285,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
     box-shadow:0 16px 24px -20px rgba(0,0,0,.55);
   }
   /* telefon yüksekliğe göre sınırlanır, yoksa ekranı tek başına doldurur */
-  .phone{width:auto;height:min(42svh,340px);border-radius:30px;padding:7px}
-  .phone::after{width:60px;height:17px;top:14px;border-radius:10px}
-  .phone__screen{border-radius:24px}
+  .phone{width:auto;height:min(42svh,340px);padding:5px}
   .deco{display:none}
   .panel{min-height:auto;padding-block:2.75rem}
   .panel:first-child{padding-top:1.5rem}
@@ -465,11 +463,11 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
 
       <section class="panel" data-index="0">
         <span class="eyebrow">Novayag · <span lang="en">Android</span></span>
-        <h1>Küçük oyunlar.<br>Hepsi telefonda,<br>hepsi <em>Türkçe</em>.</h1>
-        <p class="lede">Kelime eşlemekten çapraz bulmacaya, kelime yarışından kumsalda labut devirmeye. Hepsi ücretsiz, hepsi Android'de. En yenisi en üstte.</p>
+        <h1>Türkçe düşün,<br>Türkçe <em>oyna</em>.</h1>
+        <p class="lede">Türkçe için sıfırdan tasarlanmış kelime, bulmaca ve rekabet oyunları. Özenle hazırlanmış bölümler, gerçek zamanlı rakipler ve her gün yeni bir meydan okuma — hepsi Android'de, ücretsiz.</p>
         <div class="scrollcue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-          Kaydırın, sırayla açılsın
+          Kaydırın, en yeni oyundan başlayalım
         </div>
       </section>
 
