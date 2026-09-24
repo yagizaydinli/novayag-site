@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Novayag — Oyunlar</title>
-<meta name="description" content="Çengel Bulmaca, Issız Ada ve Kelime Yarışı. Telefonda oynanan üç Türkçe oyun.">
+<meta name="description" content="Kelime Eşle, Kare Bulmaca, Petek, Çengel Bulmaca, Kelime Yarışı ve Issız Ada. Telefonda oynanan Türkçe oyunlar.">
 <meta name="theme-color" content="#1a6ef5">
 <meta property="og:title" content="Novayag — Oyunlar">
-<meta property="og:description" content="Telefonda oynanan üç Türkçe oyun.">
+<meta property="og:description" content="Telefonda oynanan Türkçe oyunlar.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,11 +23,14 @@
   --ink:#0d1220;
   --white:#ffffff;
 
-  /* her durak için arka plan + vurgu */
-  --c0:#1a6ef5;  --a0:#ffd23f;   /* giriş  — mavi   */
-  --c1:#2f6ae0;  --a1:#ffd23f;   /* çengel — mavi   */
-  --c2:#0fa89b;  --a2:#ffe07a;   /* ada    — turkuaz*/
-  --c3:#f4543c;  --a3:#ffe14d;   /* kelime — mercan */
+  /* her durak için arka plan + vurgu (sıra = sayfadaki sıra: en yeni oyun üstte) */
+  --c0:#1a6ef5;  --a0:#ffd23f;   /* giriş */
+  --c1:#2f8fe0;  --a1:#ffd23f;   /* Kelime Eşle */
+  --c2:#f0702e;  --a2:#fff1a8;   /* Kare Bulmaca */
+  --c3:#b07a0c;  --a3:#ffe9a8;   /* Petek */
+  --c4:#2f6ae0;  --a4:#ffd23f;   /* Çengel Bulmaca */
+  --c5:#5a22b0;  --a5:#ffd23f;   /* Kelime Yarışı */
+  --c6:#0fa89b;  --a6:#ffe07a;   /* Issız Ada */
 
   --bg:var(--c0);
   --accent:var(--a0);
@@ -174,7 +177,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 .screen.is-active{opacity:1;transform:none}
 .screen svg{display:block;width:100%;height:100%}
 /* ekran kaydı bulunursa yer tutucunun üstüne biner */
-.screen__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
+.screen__video{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .45s ease}
 .screen.has-video .screen__video{opacity:1}
 
 /* uçuşan çıkartmalar */
@@ -225,6 +228,24 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
   color:rgba(255,255,255,.6);
 }
 
+
+/* ---------------- oyun ekranı: gerçek ikon (oynanış kaydı gelene kadar) ---------------- */
+.splash{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;
+  background:radial-gradient(120% 80% at 50% 30%,rgba(255,255,255,.28),transparent 60%),var(--sc,#1a6ef5)}
+.splash img{width:58%;aspect-ratio:1;border-radius:22%;box-shadow:0 18px 34px -14px rgba(0,0,0,.55);animation:splashIn 5s ease-in-out infinite}
+.splash b{font-family:var(--round);font-weight:600;font-size:1.35rem;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+@keyframes splashIn{0%,100%{translate:0 0}50%{translate:0 -8px}}
+/* ana ekran ikonları */
+.home{position:absolute;inset:0;background:linear-gradient(135deg,#12224a,#0d1220);display:flex;flex-direction:column;align-items:center}
+.home__time{margin-top:22%;font-family:var(--round);font-weight:600;font-size:clamp(1.8rem,5.5vh,2.6rem);line-height:1}
+.home__date{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:#8fa4d4;margin-top:.4rem}
+.home__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9% 9%;margin-top:18%;width:80%}
+.home__grid span{display:flex;flex-direction:column;align-items:center;gap:.35rem;font-size:.6rem;color:#dbe4fa;text-align:center;line-height:1.2}
+.home__grid img{width:100%;aspect-ratio:1;border-radius:24%;box-shadow:0 8px 16px -8px rgba(0,0,0,.6);animation:hsPop 5s ease-in-out infinite}
+.btn--soon{background:rgba(255,255,255,.18);color:#fff;box-shadow:none;cursor:default}
+.btn--soon:hover{transform:none;box-shadow:none}
+.icon-lg{width:64px;height:64px;border-radius:16px;box-shadow:0 10px 22px -10px rgba(0,0,0,.45);margin-bottom:1.2rem}
+
 /* ---------------- ekran içi animasyonlar ---------------- */
 .screen:not(.is-active) *{animation-play-state:paused !important}
 
@@ -237,46 +258,9 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 .hs-icon{animation:hsPop 5s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 50%}
 @keyframes hsPop{0%,72%,100%{scale:1}80%,88%{scale:1.07}}
 
-/* çengel */
-.cw-cell{opacity:0;animation:cwIn .3s ease forwards}
-@keyframes cwIn{to{opacity:1}}
-.cw-cursor{animation:cwMove 6s steps(1,end) infinite}
-@keyframes cwMove{
-  0%,16%{translate:0 0}      17%,33%{translate:34px 0}
-  34%,50%{translate:68px 0}  51%,67%{translate:102px 0}
-  68%,84%{translate:136px 0} 85%,100%{translate:136px 34px}
-}
-
-/* ada */
-.ia-bag{animation:iaX 3.4s cubic-bezier(.4,0,.9,.6) infinite}
-.ia-bag g{animation:iaY 3.4s cubic-bezier(.2,.7,.5,1) infinite;transform-box:fill-box;transform-origin:50% 50%}
-@keyframes iaX{0%{translate:0 0}55%,100%{translate:112px 0}}
-@keyframes iaY{
-  0%{translate:0 0;rotate:0deg}
-  30%{translate:0 -54px;rotate:140deg}
-  55%,100%{translate:0 6px;rotate:300deg}
-}
-.ia-pin{transform-box:fill-box;transform-origin:50% 100%;animation:iaFall 3.4s ease-out infinite}
-@keyframes iaFall{0%,55%{rotate:0deg;translate:0 0}72%,100%{rotate:var(--tip);translate:0 3px}}
-.ia-wave{animation:iaWave 5s ease-in-out infinite}
-@keyframes iaWave{0%,100%{translate:0 0}50%{translate:-9px 0}}
-
-/* kelime */
-.kw-tile{animation:kwPop 4.2s ease-in-out infinite}
-@keyframes kwPop{
-  0%,8%{fill:#221f1a;translate:0 0}
-  14%,52%{fill:#f4543c;translate:0 -3px}
-  60%,100%{fill:#221f1a;translate:0 0}
-}
-.kw-slot{opacity:0;animation:kwIn 4.2s ease-in-out infinite}
-@keyframes kwIn{0%,10%{opacity:0}18%,55%{opacity:1}62%,100%{opacity:0}}
-.kw-bar{animation:kwBar 4.2s linear infinite;transform-box:fill-box;transform-origin:0 50%}
-@keyframes kwBar{0%{scale:1 1}55%{scale:0 1}56%,100%{scale:1 1}}
-
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important}
   .screen,.deco > *,body{transition:none}
-  .cw-cell,.kw-slot{opacity:1}
 }
 
 /* ---------------- dar ekran ---------------- */
@@ -336,236 +320,131 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 
         <!-- çıkartmalar -->
         <div class="deco is-active" data-deco="0" aria-hidden="true">
-          <div class="bubble float" style="top:6%;left:-14%">3 oyun<small>google play</small></div>
+          <div class="bubble float" style="top:6%;left:-14%">6 oyun<small>hepsi türkçe</small></div>
           <div class="blob float float--b" style="bottom:14%;right:-11%;width:62px;height:62px">
             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#1a6ef5" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
           </div>
         </div>
         <div class="deco" data-deco="1" aria-hidden="true">
-          <div class="bubble float" style="top:4%;right:-16%">Büyük punto<small>gözü yormaz</small></div>
-          <div class="blob float float--b" style="bottom:18%;left:-12%;width:66px;height:66px">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#2f6ae0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4Z"/></svg>
+          <div class="bubble float" style="top:5%;left:-15%">150 bölüm<small>kolaydan zora</small></div>
+          <div class="blob float float--b" style="bottom:15%;right:-12%;width:64px;height:64px;overflow:hidden">
+            <img src="media/ikon/kelime-esle.png" alt="" width="64" height="64" style="width:100%;height:100%">
           </div>
         </div>
         <div class="deco" data-deco="2" aria-hidden="true">
-          <div class="bubble float" style="top:5%;left:-15%">Oda kodu<small>arkadaş maçı</small></div>
-          <div class="blob float float--b" style="bottom:16%;right:-12%;width:64px;height:64px">
-            <svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true">
-              <circle cx="16" cy="16" r="14" fill="#0fa89b"/>
-              <path d="M16 2a14 14 0 0 0-9.9 23.9L16 16Z" fill="#ffe07a"/>
-              <path d="M30 16A14 14 0 0 0 16 2v14Z" fill="#fff" opacity=".85"/>
-            </svg>
+          <div class="bubble float" style="top:5%;right:-15%">5×5 · 7×7 · 9×9<small>üç boyut</small></div>
+          <div class="blob float float--b" style="bottom:15%;left:-12%;width:64px;height:64px;overflow:hidden">
+            <img src="media/ikon/kare-bulmaca.png" alt="" width="64" height="64" style="width:100%;height:100%">
           </div>
         </div>
         <div class="deco" data-deco="3" aria-hidden="true">
-          <div class="bubble float" style="top:6%;right:-14%">+50<small>ilk kapan alır</small></div>
-          <div class="blob float float--b" style="bottom:15%;left:-12%;width:62px;height:62px">
-            <span style="font-family:var(--round);font-weight:700;font-size:1.7rem;color:#f4543c">K</span>
+          <div class="bubble float" style="top:5%;left:-15%">Pangram<small>+7 puan</small></div>
+          <div class="blob float float--b" style="bottom:15%;right:-12%;width:64px;height:64px;overflow:hidden">
+            <img src="media/ikon/petek.png" alt="" width="64" height="64" style="width:100%;height:100%">
+          </div>
+        </div>
+        <div class="deco" data-deco="4" aria-hidden="true">
+          <div class="bubble float" style="top:5%;right:-15%">Büyük punto<small>gözü yormaz</small></div>
+          <div class="blob float float--b" style="bottom:15%;left:-12%;width:64px;height:64px;overflow:hidden">
+            <img src="media/ikon/cengel.png" alt="" width="64" height="64" style="width:100%;height:100%">
+          </div>
+        </div>
+        <div class="deco" data-deco="5" aria-hidden="true">
+          <div class="bubble float" style="top:5%;left:-15%">+50<small>ilk kapan alır</small></div>
+          <div class="blob float float--b" style="bottom:15%;right:-12%;width:64px;height:64px;overflow:hidden">
+            <img src="media/ikon/kelime-yarisi.png" alt="" width="64" height="64" style="width:100%;height:100%">
+          </div>
+        </div>
+        <div class="deco" data-deco="6" aria-hidden="true">
+          <div class="bubble float" style="top:5%;right:-15%">Oda kodu<small>arkadaş maçı</small></div>
+          <div class="blob float float--b" style="bottom:15%;left:-12%;width:64px;height:64px;overflow:hidden">
+            <img src="media/ikon/issizada.png" alt="" width="64" height="64" style="width:100%;height:100%">
           </div>
         </div>
 
         <div class="phone">
           <div class="phone__screen">
 
-            <!-- 0 — ana ekran -->
+            <!-- 0 — ana ekran: gerçek ikonlar -->
             <article class="screen is-active" data-screen="0">
-              <svg viewBox="0 0 300 640" role="img" aria-label="Üç oyunun yüklü olduğu telefon ana ekranı">
-                <defs>
-                  <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#12224a"/><stop offset="1" stop-color="#0d1220"/>
-                  </linearGradient>
-                </defs>
-                <rect width="300" height="640" fill="url(#wall)"/>
-                <text x="150" y="118" font-family="Fredoka,sans-serif" font-size="46" fill="#fff" text-anchor="middle" font-weight="600">21:04</text>
-                <text x="150" y="146" font-family="monospace" font-size="11" fill="#8fa4d4" text-anchor="middle" letter-spacing="1.6">SALI, 27 AĞUSTOS</text>
-
-                <g class="hs-icon" style="animation-delay:0s" transform="translate(38,236)">
-                  <rect width="66" height="66" rx="18" fill="#2f6ae0"/>
-                  <g fill="#fff"><rect x="14" y="14" width="12" height="12" rx="2"/><rect x="28" y="14" width="12" height="12" rx="2" opacity=".45"/><rect x="42" y="14" width="12" height="12" rx="2"/><rect x="14" y="28" width="12" height="12" rx="2" opacity=".45"/><rect x="28" y="28" width="12" height="12" rx="2"/><rect x="42" y="28" width="12" height="12" rx="2" opacity=".45"/><rect x="14" y="42" width="12" height="12" rx="2"/><rect x="28" y="42" width="12" height="12" rx="2" opacity=".45"/><rect x="42" y="42" width="12" height="12" rx="2"/></g>
-                  <text x="33" y="86" font-family="Space Grotesk,sans-serif" font-size="10" fill="#dbe4fa" text-anchor="middle">Çengel</text>
-                </g>
-                <g class="hs-icon" style="animation-delay:.15s" transform="translate(117,236)">
-                  <rect width="66" height="66" rx="18" fill="#0fa89b"/>
-                  <circle cx="33" cy="30" r="15" fill="#ffe07a"/><circle cx="33" cy="30" r="8" fill="#0fa89b"/>
-                  <path d="M6 52c8-6 14 4 22-1s14 5 22-1 10 3 10 3v14H6Z" fill="#ffe9b8"/>
-                  <text x="33" y="86" font-family="Space Grotesk,sans-serif" font-size="10" fill="#dbe4fa" text-anchor="middle">Issız Ada</text>
-                </g>
-                <g class="hs-icon" style="animation-delay:.3s" transform="translate(196,236)">
-                  <rect width="66" height="66" rx="18" fill="#f4543c"/>
-                  <text x="33" y="45" font-family="Fredoka,sans-serif" font-weight="700" font-size="30" fill="#fff" text-anchor="middle">K</text>
-                  <text x="33" y="86" font-family="Space Grotesk,sans-serif" font-size="10" fill="#dbe4fa" text-anchor="middle">Kelime</text>
-                </g>
-
-                <rect x="26" y="536" width="248" height="76" rx="26" fill="#ffffff" opacity=".1"/>
-                <g opacity=".5">
-                  <rect x="46" y="552" width="44" height="44" rx="13" fill="#8fa4d4"/>
-                  <rect x="106" y="552" width="44" height="44" rx="13" fill="#8fa4d4"/>
-                  <rect x="166" y="552" width="44" height="44" rx="13" fill="#8fa4d4"/>
-                  <rect x="226" y="552" width="30" height="44" rx="13" fill="#8fa4d4"/>
-                </g>
-              </svg>
+              <div class="home" role="img" aria-label="Novayag oyunlarının yüklü olduğu telefon ana ekranı">
+                <div class="home__time">21:04</div>
+                <div class="home__date">NOVAYAG</div>
+                <div class="home__grid">
+                  <span><img src="media/ikon/kelime-esle.png" alt="" style="animation-delay:0.00s">Kelime Eşle</span>
+                  <span><img src="media/ikon/kare-bulmaca.png" alt="" style="animation-delay:0.15s">Kare Bulmaca</span>
+                  <span><img src="media/ikon/petek.png" alt="" style="animation-delay:0.30s">Petek</span>
+                  <span><img src="media/ikon/cengel.png" alt="" style="animation-delay:0.45s">Çengel Bulmaca</span>
+                  <span><img src="media/ikon/kelime-yarisi.png" alt="" style="animation-delay:0.60s">Kelime Yarışı</span>
+                  <span><img src="media/ikon/issizada.png" alt="" style="animation-delay:0.75s">Issız Ada</span>
+                </div>
+              </div>
             </article>
 
-            <!-- 1 — Çengel Bulmaca -->
+            <!-- 1 — Kelime Eşle (oynanış kaydı media/kelime-esle.mp4 eklenince ikonun üstüne biner) -->
             <article class="screen" data-screen="1">
+              <div class="splash" style="--sc:#2f8fe0" role="img" aria-label="Kelime Eşle ikonu">
+                <img src="media/ikon/kelime-esle.png" alt="">
+                <b>Kelime Eşle</b>
+              </div>
+              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="media/kelime-esle.mp4" type="video/mp4">
+              </video>
+            </article>
+
+            <!-- 2 — Kare Bulmaca (oynanış kaydı media/kare-bulmaca.mp4 eklenince ikonun üstüne biner) -->
+            <article class="screen" data-screen="2">
+              <div class="splash" style="--sc:#f0702e" role="img" aria-label="Kare Bulmaca ikonu">
+                <img src="media/ikon/kare-bulmaca.png" alt="">
+                <b>Kare Bulmaca</b>
+              </div>
+              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="media/kare-bulmaca.mp4" type="video/mp4">
+              </video>
+            </article>
+
+            <!-- 3 — Petek (oynanış kaydı media/petek.mp4 eklenince ikonun üstüne biner) -->
+            <article class="screen" data-screen="3">
+              <div class="splash" style="--sc:#b07a0c" role="img" aria-label="Petek ikonu">
+                <img src="media/ikon/petek.png" alt="">
+                <b>Petek</b>
+              </div>
+              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="media/petek.mp4" type="video/mp4">
+              </video>
+            </article>
+
+            <!-- 4 — Çengel Bulmaca (oynanış kaydı media/cengel.mp4 eklenince ikonun üstüne biner) -->
+            <article class="screen" data-screen="4">
+              <div class="splash" style="--sc:#2f6ae0" role="img" aria-label="Çengel Bulmaca ikonu">
+                <img src="media/ikon/cengel.png" alt="">
+                <b>Çengel Bulmaca</b>
+              </div>
               <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
                 <source src="media/cengel.mp4" type="video/mp4">
               </video>
-              <svg viewBox="0 0 300 640" role="img" aria-label="Çengel Bulmaca oyun ekranı">
-                <rect width="300" height="640" fill="#f7f4ec"/>
-                <rect width="300" height="76" fill="#2f6ae0"/>
-                <text x="24" y="50" font-family="Fredoka,sans-serif" font-weight="600" font-size="21" fill="#fff">Çengel Bulmaca</text>
-                <text x="24" y="106" font-family="monospace" font-size="11" fill="#8a8271" letter-spacing="1.5">GÜN 12 · 4/9 KELİME</text>
-
-                <g transform="translate(24,126)">
-                  <rect width="170" height="204" fill="#fff" stroke="#c9c1ad"/>
-                  <rect x="34" y="0" width="34" height="34" fill="#0d1220"/>
-                  <rect x="136" y="34" width="34" height="34" fill="#0d1220"/>
-                  <rect x="0" y="102" width="34" height="34" fill="#0d1220"/>
-                  <rect x="102" y="136" width="34" height="34" fill="#0d1220"/>
-                  <rect x="68" y="170" width="34" height="34" fill="#0d1220"/>
-                  <g stroke="#c9c1ad" stroke-width="1">
-                    <path d="M34 0V204M68 0V204M102 0V204M136 0V204"/>
-                    <path d="M0 34H170M0 68H170M0 102H170M0 136H170M0 170H170"/>
-                  </g>
-                  <g font-family="Fredoka,sans-serif" font-weight="600" font-size="19" fill="#0d1220" text-anchor="middle">
-                    <text class="cw-cell" style="animation-delay:.2s"  x="17"  y="24">K</text>
-                    <text class="cw-cell" style="animation-delay:.5s"  x="51"  y="58">A</text>
-                    <text class="cw-cell" style="animation-delay:.8s"  x="85"  y="24">L</text>
-                    <text class="cw-cell" style="animation-delay:1.1s" x="119" y="24">E</text>
-                    <text class="cw-cell" style="animation-delay:1.4s" x="153" y="24">M</text>
-                    <text class="cw-cell" style="animation-delay:1.8s" x="17"  y="58">A</text>
-                    <text class="cw-cell" style="animation-delay:2.1s" x="17"  y="92">R</text>
-                    <text class="cw-cell" style="animation-delay:2.4s" x="85"  y="92">İ</text>
-                    <text class="cw-cell" style="animation-delay:2.7s" x="119" y="126">N</text>
-                  </g>
-                  <rect class="cw-cursor" width="34" height="34" fill="none" stroke="#f4543c" stroke-width="3"/>
-                </g>
-
-                <text x="24" y="372" font-family="monospace" font-size="11" fill="#8a8271" letter-spacing="1.5">SOLDAN SAĞA</text>
-                <text x="24" y="400" font-family="Fredoka,sans-serif" font-size="17" fill="#0d1220">3. Yazı aracı</text>
-                <text x="24" y="428" font-family="Fredoka,sans-serif" font-size="17" fill="#8a8271">5. Denizin rengi</text>
-
-                <g transform="translate(24,474)">
-                  <g fill="#fff" stroke="#c9c1ad">
-                    <rect width="46" height="38" rx="9"/><rect x="52" width="46" height="38" rx="9"/>
-                    <rect x="104" width="46" height="38" rx="9"/><rect x="156" width="46" height="38" rx="9"/>
-                    <rect x="208" width="44" height="38" rx="9"/>
-                    <rect y="46" width="46" height="38" rx="9"/><rect x="52" y="46" width="46" height="38" rx="9"/>
-                    <rect x="104" y="46" width="46" height="38" rx="9"/><rect x="156" y="46" width="46" height="38" rx="9"/>
-                    <rect x="208" y="46" width="44" height="38" rx="9"/>
-                  </g>
-                  <g font-family="Fredoka,sans-serif" font-size="17" fill="#0d1220" text-anchor="middle">
-                    <text x="23" y="25">E</text><text x="75" y="25">R</text><text x="127" y="25">T</text><text x="179" y="25">Y</text><text x="230" y="25">U</text>
-                    <text x="23" y="71">A</text><text x="75" y="71">S</text><text x="127" y="71">D</text><text x="179" y="71">F</text><text x="230" y="71">G</text>
-                  </g>
-                </g>
-              </svg>
             </article>
 
-            <!-- 2 — Issız Ada -->
-            <article class="screen" data-screen="2">
+            <!-- 5 — Kelime Yarışı (oynanış kaydı media/kelime-yarisi.mp4 eklenince ikonun üstüne biner) -->
+            <article class="screen" data-screen="5">
+              <div class="splash" style="--sc:#5a22b0" role="img" aria-label="Kelime Yarışı ikonu">
+                <img src="media/ikon/kelime-yarisi.png" alt="">
+                <b>Kelime Yarışı</b>
+              </div>
+              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="media/kelime-yarisi.mp4" type="video/mp4">
+              </video>
+            </article>
+
+            <!-- 6 — Issız Ada (oynanış kaydı media/issizada.mp4 eklenince ikonun üstüne biner) -->
+            <article class="screen" data-screen="6">
+              <div class="splash" style="--sc:#0fa89b" role="img" aria-label="Issız Ada ikonu">
+                <img src="media/ikon/issizada.png" alt="">
+                <b>Issız Ada</b>
+              </div>
               <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
                 <source src="media/issizada.mp4" type="video/mp4">
               </video>
-              <svg viewBox="0 0 300 640" role="img" aria-label="Issız Ada oyun ekranı">
-                <defs>
-                  <linearGradient id="gok" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#7fd0e6"/><stop offset="1" stop-color="#dff0e9"/>
-                  </linearGradient>
-                </defs>
-                <rect width="300" height="640" fill="url(#gok)"/>
-                <circle cx="238" cy="92" r="30" fill="#ffe07a"/>
-                <rect y="290" width="300" height="86" fill="#0fa89b"/>
-                <g class="ia-wave" opacity=".45" fill="#bfeae6">
-                  <rect y="304" width="330" height="3" rx="1.5"/>
-                  <rect x="-20" y="332" width="330" height="3" rx="1.5"/>
-                  <rect y="356" width="330" height="3" rx="1.5"/>
-                </g>
-                <rect y="376" width="300" height="264" fill="#efdcae"/>
-                <ellipse cx="150" cy="380" rx="180" ry="16" fill="#f6e8c6"/>
-
-                <g transform="translate(150,408)">
-                  <rect x="-84" y="52" width="168" height="9" rx="4" fill="#a9784a"/>
-                  <rect x="-74" y="61" width="9" height="34" fill="#8d6139"/>
-                  <rect x="65" y="61" width="9" height="34" fill="#8d6139"/>
-                  <g fill="#fbf7ee" stroke="#d8cbb0">
-                    <g class="ia-pin" style="--tip:-74deg;animation-delay:0s"   transform="translate(-64,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
-                    <g class="ia-pin" style="--tip:-52deg;animation-delay:.06s" transform="translate(-32,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
-                    <g class="ia-pin" style="--tip:18deg;animation-delay:.02s"  transform="translate(0,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
-                    <g class="ia-pin" style="--tip:58deg;animation-delay:.1s"   transform="translate(32,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
-                    <g class="ia-pin" style="--tip:80deg;animation-delay:.16s"  transform="translate(64,0)"><path d="M0 52c-7 0-11-6-11-13 0-6 3-9 4-14 1-4 1-9-1-13 3-3 5-6 8-6s5 3 8 6c-2 4-2 9-1 13 1 5 4 8 4 14 0 7-4 13-11 13Z"/></g>
-                  </g>
-                </g>
-
-                <g class="ia-bag" transform="translate(58,512)">
-                  <g><ellipse rx="13" ry="10" fill="#c9954f" stroke="#9c6f34" stroke-width="2"/><path d="M-5-8h10" stroke="#9c6f34" stroke-width="2"/></g>
-                </g>
-
-                <rect width="300" height="62" fill="#0b3b3d" opacity=".85"/>
-                <text x="20" y="27" font-family="monospace" font-size="10" fill="#7fd0e6" letter-spacing="1.4">SEN</text>
-                <text x="20" y="49" font-family="Fredoka,sans-serif" font-weight="600" font-size="20" fill="#fff">3</text>
-                <text x="280" y="27" font-family="monospace" font-size="10" fill="#f5a9a0" letter-spacing="1.4" text-anchor="end">RAKİP</text>
-                <text x="280" y="49" font-family="Fredoka,sans-serif" font-weight="600" font-size="20" fill="#fff" text-anchor="end">2</text>
-                <text x="150" y="42" font-family="monospace" font-size="11" fill="#dff0e9" text-anchor="middle">LABUT DEVİRME</text>
-
-                <rect x="82" y="582" width="136" height="38" rx="19" fill="#0b3b3d" opacity=".85"/>
-                <text x="150" y="606" font-family="monospace" font-size="10" fill="#dff0e9" text-anchor="middle" letter-spacing="1.2">BASILI TUT &amp; FIRLAT</text>
-              </svg>
-            </article>
-
-            <!-- 3 — Kelime Yarışı -->
-            <article class="screen" data-screen="3">
-              <video class="screen__video" muted loop playsinline preload="metadata" aria-hidden="true">
-                <source src="media/kelime.mp4" type="video/mp4">
-              </video>
-              <svg viewBox="0 0 300 640" role="img" aria-label="Kelime Yarışı oyun ekranı">
-                <rect width="300" height="640" fill="#17150f"/>
-                <text x="24" y="46" font-family="monospace" font-size="10" fill="#8b8272" letter-spacing="1.6">TUR 4 · ODA 21</text>
-                <rect x="24" y="62" width="252" height="5" rx="2.5" fill="#2e2a21"/>
-                <rect class="kw-bar" x="24" y="62" width="252" height="5" rx="2.5" fill="#f4543c"/>
-
-                <text x="24" y="114" font-family="monospace" font-size="10" fill="#8b8272" letter-spacing="1.6">KAPILAN KELİME</text>
-                <g font-family="Fredoka,sans-serif" font-weight="600" font-size="32" fill="#f5efe2">
-                  <text class="kw-slot" style="animation-delay:0s"   x="24"  y="156">K</text>
-                  <text class="kw-slot" style="animation-delay:.14s" x="60"  y="156">A</text>
-                  <text class="kw-slot" style="animation-delay:.28s" x="96"  y="156">L</text>
-                  <text class="kw-slot" style="animation-delay:.42s" x="132" y="156">E</text>
-                  <text class="kw-slot" style="animation-delay:.56s" x="168" y="156">M</text>
-                </g>
-                <line x1="24" y1="180" x2="276" y2="180" stroke="#2e2a21"/>
-
-                <g font-family="monospace" font-size="12">
-                  <text x="24" y="216" fill="#f5efe2">sen</text>
-                  <text x="276" y="216" fill="#f4543c" text-anchor="end">148</text>
-                  <text x="24" y="246" fill="#8b8272">deniz_44</text>
-                  <text x="276" y="246" fill="#8b8272" text-anchor="end">131</text>
-                  <text x="24" y="276" fill="#8b8272">mert</text>
-                  <text x="276" y="276" fill="#8b8272" text-anchor="end">96</text>
-                </g>
-
-                <g transform="translate(37,334)">
-                  <g>
-                    <rect class="kw-tile" style="animation-delay:0s"   width="66" height="66" rx="16"/>
-                    <rect class="kw-tile" style="animation-delay:.14s" x="80" width="66" height="66" rx="16"/>
-                    <rect class="kw-tile" style="animation-delay:.28s" x="160" width="66" height="66" rx="16"/>
-                    <rect class="kw-tile" style="animation-delay:.42s" y="80" width="66" height="66" rx="16"/>
-                    <rect class="kw-tile" style="animation-delay:.56s" x="80" y="80" width="66" height="66" rx="16"/>
-                    <rect x="160" y="80" width="66" height="66" rx="16" fill="#221f1a"/>
-                    <rect y="160" width="66" height="66" rx="16" fill="#221f1a"/>
-                    <rect x="80" y="160" width="66" height="66" rx="16" fill="#221f1a"/>
-                    <rect x="160" y="160" width="66" height="66" rx="16" fill="#221f1a"/>
-                  </g>
-                  <g font-family="Fredoka,sans-serif" font-weight="600" font-size="26" fill="#f5efe2" text-anchor="middle">
-                    <text x="33" y="44">K</text><text x="113" y="44">A</text><text x="193" y="44">L</text>
-                    <text x="33" y="124">E</text><text x="113" y="124">M</text><text x="193" y="124">T</text>
-                    <text x="33" y="204">R</text><text x="113" y="204">S</text><text x="193" y="204">İ</text>
-                  </g>
-                </g>
-
-                <rect x="37" y="590" width="226" height="34" rx="17" fill="#f4543c"/>
-                <text x="150" y="612" font-family="monospace" font-size="10" fill="#17150f" text-anchor="middle" letter-spacing="1.4">KAP</text>
-              </svg>
             </article>
 
           </div>
@@ -573,7 +452,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
       </div>
 
       <ol class="ticks" aria-hidden="true">
-        <li class="on"><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li>
+        <li class="on"><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li><li><span></span></li>
       </ol>
     </div>
 
@@ -582,8 +461,8 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
 
       <section class="panel" data-index="0">
         <span class="eyebrow">Novayag · Android</span>
-        <h1>Üç oyun.<br>Hepsi telefonda,<br>hepsi <em>Türkçe</em>.</h1>
-        <p class="lede">Çengel bulmacadan kelime kapmacaya, kumsalda labut devirmeye. Hepsi Google Play'de, hepsi ücretsiz.</p>
+        <h1>Altı oyun.<br>Hepsi telefonda,<br>hepsi <em>Türkçe</em>.</h1>
+        <p class="lede">Kelime eşlemekten çapraz bulmacaya, kelime yarışından kumsalda labut devirmeye. Hepsi ücretsiz, hepsi Android'de. En yenisi en üstte.</p>
         <div class="scrollcue">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
           Kaydırın, sırayla açılsın
@@ -591,6 +470,43 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
       </section>
 
       <section class="panel" data-index="1">
+        <img class="icon-lg" src="media/ikon/kelime-esle.png" alt="Kelime Eşle ikonu" width="64" height="64">
+        <span class="eyebrow">Kelime · Tek kişilik · Yakında</span>
+        <h2>Kelimeleri<br><em>doğru gruba</em> topla.</h2>
+        <p class="lede">Balonlardaki kelimeleri kategorilerine göre birleştir, grup tamamlanınca patlat. "Mısır" ülke mi, tahıl mı? Bölümler ilerledikçe birbirine yakın kategoriler aynı tahtaya gelir.</p>
+        <ul class="chips"><li>150 bölüm</li><li>Güçlendiriciler</li><li>Çevrimdışı</li></ul>
+        <div class="actions">
+          <span class="btn btn--soon">Yakında Google Play'de</span>
+          <span class="pkg">com.novayag.kelimeesle</span>
+        </div>
+      </section>
+
+      <section class="panel" data-index="2">
+        <img class="icon-lg" src="media/ikon/kare-bulmaca.png" alt="Kare Bulmaca ikonu" width="64" height="64">
+        <span class="eyebrow">Bulmaca · Tek kişilik · Yakında</span>
+        <h2>Gazetedeki<br><em>çapraz bulmaca</em>.</h2>
+        <p class="lede">Mini 5×5'ten büyük 9×9'a, kolaydan zora sıralanmış Türkçe bulmacalar. Takılınca kelimenin örnek cümlesini gör, harf ya da kelime aç.</p>
+        <ul class="chips"><li>300 bulmaca</li><li>Üç boyut</li><li>Akıllı ipucu</li><li>Çevrimdışı</li></ul>
+        <div class="actions">
+          <span class="btn btn--soon">Yakında Google Play'de</span>
+          <span class="pkg">com.novayag.capraz</span>
+        </div>
+      </section>
+
+      <section class="panel" data-index="3">
+        <img class="icon-lg" src="media/ikon/petek.png" alt="Petek ikonu" width="64" height="64">
+        <span class="eyebrow">Kelime · Günlük · Yakında</span>
+        <h2>Yedi harf,<br><em>her gün</em> yeni petek.</h2>
+        <p class="lede">Ortadaki harfi kullanarak bulabildiğin kadar kelime türet. Günün peteği herkes için aynı; buldukça Yavru Arı'dan Kraliçe Arı'ya yüksel.</p>
+        <ul class="chips"><li>Günlük bulmaca</li><li>Rütbe ve rozetler</li><li>Karanlık mod</li><li>Çevrimdışı</li></ul>
+        <div class="actions">
+          <span class="btn btn--soon">Yakında Google Play'de</span>
+          <span class="pkg">com.novayag.petek</span>
+        </div>
+      </section>
+
+      <section class="panel" data-index="4">
+        <img class="icon-lg" src="media/ikon/cengel.png" alt="Çengel Bulmaca ikonu" width="64" height="64">
         <span class="eyebrow">Bulmaca · Tek kişilik</span>
         <h2>Her güne<br><em>bir bulmaca</em>.</h2>
         <p class="lede">Klasik gazete çengel bulmacası, gözünüzü yormadan. Büyük punto, yüksek kontrast, dört kata kadar büyütme. Hesap açmak yok — açın ve çözmeye başlayın.</p>
@@ -604,21 +520,8 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
         </div>
       </section>
 
-      <section class="panel" data-index="2">
-        <span class="eyebrow">Atış · Online</span>
-        <h2>Kumsalda<br><em>karşılıklı atış</em>.</h2>
-        <p class="lede">Kum torbasıyla masadaki labutları devirin ya da çubuk fırlatıp raflardaki topları düşürün. Rastgele eşleşin, ya da oda kodunu paylaşıp arkadaşınızla oynayın.</p>
-        <ul class="chips"><li>İki oyun modu</li><li>Online eşleşme</li><li>Oda koduyla arkadaş maçı</li><li>tr · en · ru</li></ul>
-        <div class="actions">
-          <a class="btn" href="https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada">
-            Google Play'de aç
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
-          </a>
-          <span class="pkg">com.yagizaydinli.issizada</span>
-        </div>
-      </section>
-
-      <section class="panel" data-index="3">
+      <section class="panel" data-index="5">
+        <img class="icon-lg" src="media/ikon/kelime-yarisi.png" alt="Kelime Yarışı ikonu" width="64" height="64">
         <span class="eyebrow">Kelime · Online</span>
         <h2>Dokuz harf.<br><em>İlk kapan alır</em>.</h2>
         <p class="lede">Sayılı saniye içinde kelimeyi bulun ve önce siz kapın. Rakipler gerçek zamanlı; masa boşsa insan temposunda oynayan botlar devreye giriyor, beklemiyorsunuz.</p>
@@ -629,6 +532,21 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
           </a>
           <span class="pkg">com.yagiz.kelimekapmaca</span>
+        </div>
+      </section>
+
+      <section class="panel" data-index="6">
+        <img class="icon-lg" src="media/ikon/issizada.png" alt="Issız Ada ikonu" width="64" height="64">
+        <span class="eyebrow">Atış · Online</span>
+        <h2>Kumsalda<br><em>karşılıklı atış</em>.</h2>
+        <p class="lede">Kum torbasıyla masadaki labutları devirin ya da çubuk fırlatıp raflardaki topları düşürün. Rastgele eşleşin, ya da oda kodunu paylaşıp arkadaşınızla oynayın.</p>
+        <ul class="chips"><li>İki oyun modu</li><li>Online eşleşme</li><li>Oda koduyla arkadaş maçı</li><li>tr · en · ru</li></ul>
+        <div class="actions">
+          <a class="btn" href="https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada">
+            Google Play'de aç
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+          <span class="pkg">com.yagizaydinli.issizada</span>
         </div>
       </section>
 
@@ -645,9 +563,12 @@ h1,h2{margin:0;font-family:var(--round);font-weight:600;line-height:1.02;letter-
     <div>
       <span class="eyebrow">Oyunlar</span>
       <ul>
+        <li>Kelime Eşle <span style="opacity:.6">· yakında</span></li>
+        <li>Kare Bulmaca <span style="opacity:.6">· yakında</span></li>
+        <li>Petek <span style="opacity:.6">· yakında</span></li>
         <li><a href="https://play.google.com/store/apps/details?id=com.novayag.cengel">Çengel Bulmaca</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada">Issız Ada</a></li>
         <li><a href="https://play.google.com/store/apps/details?id=com.yagiz.kelimekapmaca">Kelime Yarışı</a></li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada">Issız Ada</a></li>
       </ul>
     </div>
     <div>
