@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kelime Eşle — Gizlilik Politikası</title>
+<style>
+  :root {
+    --zemin: #f6f7f8;
+    --zemin-alt: #eceef0;
+    --yuzey: #ffffff;
+    --murekkep: #1d2230;
+    --murekkep-soluk: #5b6070;
+    --murekkep-silik: #83899a;
+    --vurgu: #7b4dff;
+    --vurgu-koyu: #5a2fd6;
+    --kenar: #dcdfe4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --zemin: #1c1c1c;
+      --zemin-alt: #151515;
+      --yuzey: #262a2a;
+      --murekkep: #f2f2f2;
+      --murekkep-soluk: #c9ccd2;
+      --murekkep-silik: #a6a6a6;
+      --vurgu: #7b4dff;
+      --vurgu-koyu: #b49bff;
+      --kenar: #3a3d3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: linear-gradient(var(--zemin), var(--zemin-alt));
+    background-attachment: fixed;
+    color: var(--murekkep);
+    font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .sayfa { max-width: 46rem; margin: 0 auto; padding: 40px 22px 80px; }
+
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 6px; }
+  header svg { flex: none; }
+  header h1 { font-size: 1.6rem; margin: 0; letter-spacing: .01em; }
+  .tarih { color: var(--murekkep-silik); font-size: .92rem; margin: 0 0 34px; }
+
+  h2 {
+    font-size: 1.12rem;
+    margin: 38px 0 10px;
+    padding-top: 22px;
+    border-top: 1px solid var(--kenar);
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; }
+  h3 { font-size: .95rem; margin: 22px 0 8px; color: var(--murekkep-soluk); }
+  p, li { color: var(--murekkep-soluk); }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  a { color: var(--vurgu-koyu); }
+
+  .ozet {
+    background: var(--yuzey);
+    border: 1px solid var(--kenar);
+    border-left: 5px solid var(--vurgu);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 0 0 30px;
+  }
+  .ozet p:last-child { margin-bottom: 0; }
+
+  .kaydir { overflow-x: auto; margin: 0 0 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+  th, td {
+    text-align: left;
+    padding: 10px 14px 10px 0;
+    border-bottom: 1px solid var(--kenar);
+    vertical-align: top;
+  }
+  th { color: var(--murekkep-silik); font-weight: 600; font-size: .82rem;
+       text-transform: uppercase; letter-spacing: .05em; }
+  td:first-child { white-space: nowrap; color: var(--murekkep); }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: .88em;
+    background: var(--zemin-alt);
+    border: 1px solid var(--kenar);
+    border-radius: 5px;
+    padding: 1px 5px;
+    color: var(--murekkep);
+  }
+  footer {
+    margin-top: 46px; padding-top: 22px;
+    border-top: 1px solid var(--kenar);
+    color: var(--murekkep-silik); font-size: .9rem;
+  }
+</style>
+</head>
+<body>
+<div class="sayfa">
+
+<header>
+  <svg width="52" height="52" viewBox="0 0 100 100" aria-hidden="true">
+    <rect x="2" y="2" width="96" height="96" rx="22" fill="#7b4dff"/>
+    <circle cx="50" cy="52" r="32" fill="#ffd23f"/>
+    <text x="50" y="66" text-anchor="middle" font-family="system-ui,sans-serif" font-weight="800" font-size="42" fill="#3a1d9e">K</text>
+  </svg>
+  <h1>Kelime Eşle — Gizlilik Politikası</h1>
+</header>
+<p class="tarih">Son güncelleme: 24 Eylül 2026</p>
+
+<div class="ozet">
+  <p><strong>Kısaca:</strong> Kelime Eşle hesap açmanızı istemez; ad, e-posta,
+  telefon ya da konum bilgisi toplamaz. Oyun ilerlemeniz yalnızca telefonunuzda
+  saklanır ve bize hiçbir zaman ulaşmaz. Uygulamada banner reklam yoktur;
+  reklamları Google AdMob sunar. Uygulama içi satın alma yoktur.</p>
+</div>
+
+<p>Bu metin, <strong>Kelime Eşle: Kelime Oyunu</strong> uygulamasının
+(<code>com.novayag.kelimeesle</code>) hangi verileri işlediğini anlatır.
+Uygulamayı Novayag geliştirir ve yayımlar.</p>
+
+<h2>Telefonunuzda saklanan veriler</h2>
+<p>Aşağıdakiler uygulamanın kendi klasöründeki tek bir dosyada
+(<code>save.json</code>) tutulur, <strong>cihazdan çıkmaz</strong> ve bizim
+tarafımızdan görülmez. Uygulamayı silerseniz hepsi silinir. Sunucu, hesap ya da
+bulut yedeği yoktur.</p>
+<div class="kaydir">
+<table>
+  <thead><tr><th>Ne</th><th>Neden</th></tr></thead>
+  <tbody>
+    <tr><td>Açtığınız en son bölüm</td><td>Haritada kaldığınız yer</td></tr>
+    <tr><td>Coin ve güçlendirici (booster) sayılarınız</td><td>Oyun içi ekonomi</td></tr>
+    <tr><td>Günlük hediyeyi en son aldığınız tarih ve sandık durumu</td><td>Ödüllerin bir kez verilmesi</td></tr>
+    <tr><td>Bir bölümde kaç kez kaybettiğiniz</td><td>Zorlanınca ek hamle hediyesi</td></tr>
+    <tr><td>Ses ve titreşim ayarları, tanıtımın görülüp görülmediği</td><td>Tercihleriniz</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>İnternet bağlantısı</h2>
+<p>Uygulama yalnızca reklam almak için internete bağlanır. Bölümler ve kelimeler
+tamamen cihazdadır; oyun çevrimdışı oynanabilir. Ödüllü reklam alınamazsa ödül
+yine verilir, oyun engellenmez.</p>
+
+<h2>Reklamlar</h2>
+<p>Uygulamada sabit (banner) reklam <strong>yoktur</strong>. İki tür reklam
+gösterilir:</p>
+<ul>
+  <li><strong>Ödüllü reklam:</strong> yalnızca siz seçerseniz; örneğin hamleniz
+  bitince "+5 hamle" ya da güçlendiriciniz kalmayınca bir tane almak için.</li>
+  <li><strong>Geçiş reklamı:</strong> 4. bölümden sonra, bazı bölümleri
+  kazandığınızda (en fazla birkaç bölümde bir) gösterilir. Kaybettiğinizde
+  gösterilmez.</li>
+</ul>
+<p>Reklamlar <strong>Google AdMob</strong> ile sunulur. AdMob, reklam
+gösterebilmek ve ölçebilmek için tipik olarak şunları işler:</p>
+<ul>
+  <li>Reklam kimliği (Android Advertising ID)</li>
+  <li>Cihaz ve uygulama bilgileri (model, işletim sistemi sürümü, uygulama sürümü)</li>
+  <li>IP adresi ve buradan çıkarılan yaklaşık konum (şehir düzeyi)</li>
+  <li>Reklam etkileşimleri (görüntülenme, tamamlanma, tıklama)</li>
+</ul>
+<p>Bu verileri biz toplamaz, saklamaz ve göremeyiz. Google'ın nasıl işlediği:
+<a href="https://policies.google.com/technologies/ads">policies.google.com/technologies/ads</a>
+ve
+<a href="https://support.google.com/admob/answer/6128543">support.google.com/admob/answer/6128543</a>.</p>
+<p>Reklam kimliğinizi sıfırlamak ya da kişiselleştirilmiş reklamları kapatmak
+için: <strong>Ayarlar → Google → Reklamlar</strong> (Android sürümüne göre yeri
+değişebilir).</p>
+
+<h2>Avrupa Ekonomik Alanı, Birleşik Krallık ve İsviçre</h2>
+<p>Bu bölgelerdeki kullanıcılara, reklam istenmeden önce Google'ın Kullanıcı
+Mesajlaşma Platformu (UMP) üzerinden bir rıza formu gösterilir.
+Kişiselleştirilmiş reklamları kabul etmezseniz uygulama çalışmaya devam eder;
+yalnızca kişiselleştirilmemiş reklam görürsünüz. Tercihinizi daha sonra
+<strong>ana ekran → ayarlar → Gizlilik seçenekleri</strong> üzerinden
+değiştirebilirsiniz.</p>
+
+<h2>Çocuklar</h2>
+<p>Kelime Eşle çocuklara yönelik bir uygulama değildir ve 13 yaşın altındaki
+kullanıcılardan bilerek veri toplamaz.</p>
+
+<h2>Analitik ve çökme raporlama</h2>
+<p>Uygulamada analitik, kullanıcı takibi ya da çökme raporlama aracı
+<strong>yoktur</strong>. Reklam SDK'sı dışında hiçbir üçüncü taraf bileşen
+veri işlemez.</p>
+
+<h2>İzinler</h2>
+<div class="kaydir">
+<table>
+  <thead><tr><th>İzin</th><th>Neden</th></tr></thead>
+  <tbody>
+    <tr><td><code>VIBRATE</code></td><td>Oyun içi titreşim (ayarlardan kapatılabilir)</td></tr>
+    <tr><td><code>INTERNET</code></td><td>Reklam almak</td></tr>
+    <tr><td><code>AD_ID</code></td><td>Reklam kimliği (Google reklam SDK'sı)</td></tr>
+    <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>Bağlantı durumu (reklam SDK'sı)</td></tr>
+    <tr><td><code>ACCESS_ADSERVICES_*</code></td><td>Android Privacy Sandbox reklam API'leri</td></tr>
+    <tr><td><code>READ_BASIC_PHONE_STATE</code></td><td>Şebeke türü bilgisi (reklam SDK'sı)</td></tr>
+    <tr><td><code>FOREGROUND_SERVICE</code>, <code>WAKE_LOCK</code></td><td>Reklam oynatımı sırasında</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Titreşim dışındaki izinleri uygulama kendi adına kullanmaz; hepsi reklam
+bileşeninden gelir.</p>
+
+<h2>Haklarınız</h2>
+<p>Cihazınızda tutulan verileri silmenin yolu uygulamayı kaldırmak ya da
+<strong>Ayarlar → Uygulamalar → Kelime Eşle → Depolama → Verileri
+temizle</strong> demektir. Bizde sizinle ilişkilendirilebilecek bir kayıt
+bulunmadığından, silme ya da erişim için bize başvurmanız gerekmez.</p>
+
+<h2>Değişiklikler</h2>
+<p>Bu metin değişirse üstteki tarih güncellenir ve yeni sürüm aynı adreste
+yayımlanır.</p>
+
+<h2>İletişim</h2>
+<p>Novayag — <a href="mailto:yagizaydinli@novayag.com">yagizaydinli@novayag.com</a></p>
+
+<footer>
+  Kelime Eşle — Türkçe kelime gruplama oyunu. © 2026 Novayag
+</footer>
+
+</div>
+</body>
+</html>
