@@ -255,7 +255,9 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
 }
 .btn--soon{background:rgba(255,255,255,.18);color:#fff;box-shadow:none;cursor:default}
 .btn--soon:hover{transform:none;box-shadow:none}
-.icon-lg{width:64px;height:64px;border-radius:16px;box-shadow:0 10px 22px -10px rgba(0,0,0,.45);margin-bottom:1.2rem}
+.game-id{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem}
+.icon-lg{width:64px;height:64px;border-radius:16px;box-shadow:0 10px 22px -10px rgba(0,0,0,.45);flex:none}
+.game-name{font-family:var(--round);font-weight:700;font-size:clamp(1.5rem,2.2vw,1.9rem);line-height:1.1}
 
 /* ---------------- ekran içi animasyonlar ---------------- */
 .screen:not(.is-active) *{animation-play-state:paused !important}
@@ -331,7 +333,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
           </div>
         </div>
         <div class="deco" data-deco="1" aria-hidden="true">
-          <div class="bubble float" style="top:5%;left:-27%">150 bölüm<small>kolaydan zora</small></div>
+          <div class="bubble float" style="top:5%;left:-27%">Kolaydan zora<small>yakın kategoriler</small></div>
           <div class="blob float float--b" style="bottom:15%;right:-12%;width:64px;height:64px;overflow:hidden">
             <img src="media/ikon/kelime-esle.png" alt="" width="64" height="64" style="width:100%;height:100%">
           </div>
@@ -472,11 +474,11 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       </section>
 
       <section class="panel" data-index="1">
-        <img class="icon-lg" src="media/ikon/kelime-esle.png" alt="Kelime Eşle ikonu" width="64" height="64">
+        <div class="game-id"><img class="icon-lg" src="media/ikon/kelime-esle.png" alt="" width="64" height="64"><span class="game-name">Kelime Eşle</span></div>
         <span class="eyebrow">Kelime · Tek kişilik · Yakında</span>
         <h2>Kelimeleri<br><em>doğru gruba</em> topla.</h2>
         <p class="lede">Balonlardaki kelimeleri kategorilerine göre birleştir, grup tamamlanınca patlat. "Mısır" ülke mi, tahıl mı? Bölümler ilerledikçe birbirine yakın kategoriler aynı tahtaya gelir.</p>
-        <ul class="chips"><li>150 bölüm</li><li>Güçlendiriciler</li><li>Çevrimdışı</li></ul>
+        <ul class="chips"><li>Artan zorluk</li><li>Güçlendiriciler</li><li>Çevrimdışı</li></ul>
         <div class="actions">
           <a class="btn" href="https://play.google.com/store/apps/details?id=com.novayag.kelimeesle">
             Google Play'de aç
@@ -487,11 +489,11 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       </section>
 
       <section class="panel" data-index="2">
-        <img class="icon-lg" src="media/ikon/kare-bulmaca.png" alt="Kare Bulmaca ikonu" width="64" height="64">
+        <div class="game-id"><img class="icon-lg" src="media/ikon/kare-bulmaca.png" alt="" width="64" height="64"><span class="game-name">Kare Bulmaca</span></div>
         <span class="eyebrow">Bulmaca · Tek kişilik · Yakında</span>
         <h2>Gazetedeki<br><em>çapraz bulmaca</em>.</h2>
         <p class="lede">Mini 5×5'ten büyük 9×9'a, kolaydan zora sıralanmış Türkçe bulmacalar. Takılınca kelimenin örnek cümlesini gör, harf ya da kelime aç.</p>
-        <ul class="chips"><li>300 bulmaca</li><li>Üç boyut</li><li>Akıllı ipucu</li><li>Çevrimdışı</li></ul>
+        <ul class="chips"><li>Türkçe ipuçları</li><li>Üç boyut</li><li>Akıllı ipucu</li><li>Çevrimdışı</li></ul>
         <div class="actions">
           <a class="btn" href="https://play.google.com/store/apps/details?id=com.novayag.capraz">
             Google Play'de aç
@@ -502,7 +504,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       </section>
 
       <section class="panel" data-index="3">
-        <img class="icon-lg" src="media/ikon/petek.png" alt="Petek ikonu" width="64" height="64">
+        <div class="game-id"><img class="icon-lg" src="media/ikon/petek.png" alt="" width="64" height="64"><span class="game-name">Petek</span></div>
         <span class="eyebrow">Kelime · Günlük · Yakında</span>
         <h2>Yedi harf,<br><em>her gün</em> yeni petek.</h2>
         <p class="lede">Ortadaki harfi kullanarak bulabildiğin kadar kelime türet. Günün peteği herkes için aynı; buldukça Yavru Arı'dan Kraliçe Arı'ya yüksel.</p>
@@ -517,11 +519,11 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       </section>
 
       <section class="panel" data-index="4">
-        <img class="icon-lg" src="media/ikon/cengel.png" alt="Çengel Bulmaca ikonu" width="64" height="64">
+        <div class="game-id"><img class="icon-lg" src="media/ikon/cengel.png" alt="" width="64" height="64"><span class="game-name">Çengel Bulmaca</span></div>
         <span class="eyebrow">Bulmaca · Tek kişilik</span>
         <h2>Her güne<br><em>bir bulmaca</em>.</h2>
         <p class="lede">Klasik gazete çengel bulmacası, gözünüzü yormadan. Büyük punto, yüksek kontrast, dört kata kadar büyütme. Hesap açmak yok — açın ve çözmeye başlayın.</p>
-        <ul class="chips"><li>30 bulmaca</li><li>Çevrimdışı</li><li>Hesap gerekmez</li></ul>
+        <ul class="chips"><li>Gazete klasiği</li><li>Çevrimdışı</li><li>Hesap gerekmez</li></ul>
         <div class="actions">
           <a class="btn" href="https://play.google.com/store/apps/details?id=com.novayag.cengel">
             Google Play'de aç
@@ -532,7 +534,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       </section>
 
       <section class="panel" data-index="5">
-        <img class="icon-lg" src="media/ikon/kelime-yarisi.png" alt="Kelime Yarışı ikonu" width="64" height="64">
+        <div class="game-id"><img class="icon-lg" src="media/ikon/kelime-yarisi.png" alt="" width="64" height="64"><span class="game-name">Kelime Yarışı</span></div>
         <span class="eyebrow">Kelime · <span lang="en">Online</span></span>
         <h2>Dokuz harf.<br><em>İlk kapan alır</em>.</h2>
         <p class="lede">Sayılı saniye içinde kelimeyi bulun ve önce siz kapın. Rakipler gerçek zamanlı; masa boşsa insan temposunda oynayan botlar devreye giriyor, beklemiyorsunuz.</p>
@@ -547,7 +549,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       </section>
 
       <section class="panel" data-index="6">
-        <img class="icon-lg" src="media/ikon/issizada.png" alt="Issız Ada ikonu" width="64" height="64">
+        <div class="game-id"><img class="icon-lg" src="media/ikon/issizada.png" alt="" width="64" height="64"><span class="game-name">Issız Ada</span></div>
         <span class="eyebrow">Atış · <span lang="en">Online</span></span>
         <h2>Kumsalda<br><em>karşılıklı atış</em>.</h2>
         <p class="lede">Kum torbasıyla masadaki labutları devirin ya da çubuk fırlatıp raflardaki topları düşürün. Rastgele eşleşin, ya da oda kodunu paylaşıp arkadaşınızla oynayın.</p>
