@@ -455,6 +455,7 @@ ROBOTS = f'''# novayag.com — arama motorları ve yapay zekâ asistanları site
 User-agent: *
 Allow: /
 Disallow: /m/
+Disallow: /tools/
 
 # Yapay zekâ arama ve asistan tarayıcıları (açıkça izinli)
 User-agent: GPTBot
