@@ -3,15 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Novayag — Oyunlar</title>
-<meta name="description" content="Kelime Eşle, Kare Bulmaca, Petek, Çengel Bulmaca, Kelime Yarışı ve Issız Ada. Türkçe için tasarlanmış kelime, bulmaca ve rekabet oyunları.">
+<title>Novayag — Türkçe kelime, bulmaca ve online oyunlar</title>
+<meta name="description" content="Türkçe için tasarlanmış ücretsiz Android oyunları: Kelime Eşle, Kare Bulmaca, Petek, Çengel Bulmaca, Kelime Yarışı, Issız Ada. Çoğu internetsiz oynanır.">
 <meta name="theme-color" content="#1a6ef5">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta property="og:title" content="Novayag — Oyunlar">
+<meta property="og:title" content="Novayag — Oyunlarımız Türkçe konuşur">
 <meta property="og:description" content="Türkçe için tasarlanmış kelime, bulmaca ve rekabet oyunları.">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Novayag">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:url" content="https://novayag.com/">
+<meta property="og:image" content="https://novayag.com/media/og/novayag.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://novayag.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
@@ -218,6 +225,13 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
 .dots{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .dots i{position:absolute;border-radius:50%;background:rgba(255,255,255,.22)}
 
+/* ---------------- sss ---------------- */
+.faq{position:relative;z-index:2;padding-block:3rem 1rem}
+.faq h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:1.2rem}
+.faq details{background:rgba(255,255,255,.12);border-radius:18px;padding:1rem 1.2rem;margin:0 0 .7rem;max-width:52rem}
+.faq summary{cursor:pointer;font-family:var(--round);font-weight:700;font-size:1.08rem;line-height:1.3}
+.faq details p{margin:.6rem 0 0;color:rgba(255,255,255,.88)}
+
 /* ---------------- alt ---------------- */
 .foot{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.22);margin-top:2rem;padding-block:2.5rem 3rem}
 .foot__grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr);gap:2rem}
@@ -257,6 +271,9 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
 .btn--soon:hover{transform:none;box-shadow:none}
 .game-id{display:flex;align-items:center;gap:.9rem;margin-bottom:1.1rem}
 .icon-lg{width:64px;height:64px;border-radius:16px;box-shadow:0 10px 22px -10px rgba(0,0,0,.45);flex:none}
+.more{font-family:var(--round);font-weight:600;text-decoration:none;opacity:.9}
+.more:hover{opacity:1;text-decoration:underline;text-underline-offset:3px}
+a.game-name{text-decoration:none}
 .game-name{font-family:var(--round);font-weight:700;font-size:clamp(1.5rem,2.2vw,1.9rem);line-height:1.1}
 
 /* ---------------- ekran içi animasyonlar ---------------- */
@@ -297,6 +314,9 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
   .foot__grid{grid-template-columns:1fr;gap:1.5rem}
 }
 </style>
+<!-- seo:jsonld -->
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://novayag.com/#kurulus", "name": "Novayag", "url": "https://novayag.com/", "logo": "https://novayag.com/media/marka/ikon_512.png", "email": "yagizaydinli@novayag.com", "description": "Türkçe için tasarlanmış kelime, bulmaca ve rekabet oyunları geliştiren Android oyun stüdyosu.", "sameAs": ["https://play.google.com/store/apps/developer?id=Novayag"]}, {"@type": "WebSite", "@id": "https://novayag.com/#site", "url": "https://novayag.com/", "name": "Novayag", "inLanguage": "tr", "publisher": {"@id": "https://novayag.com/#kurulus"}}, {"@type": "ItemList", "name": "Novayag oyunları", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": ["MobileApplication", "VideoGame"], "@id": "https://novayag.com/oyunlar/kelime-esle/#uygulama", "name": "Kelime Eşle: Kelime Oyunu", "alternateName": "Kelime Eşle", "description": "Kelime Eşle, balonlara dağılmış kelimeleri kategorilerine göre birleştirdiğin Türkçe bir kelime gruplama oyunu. Grup tamamlanınca kategori ortaya çıkar ve balon patlar; her birleştirme bir hamle harcar.", "url": "https://novayag.com/oyunlar/kelime-esle/", "image": "https://novayag.com/media/ikon/kelime-esle.png", "operatingSystem": "Android", "applicationCategory": "GameApplication", "genre": "Kelime · Bulmaca", "inLanguage": "tr", "isAccessibleForFree": true, "keywords": "kelime gruplama oyunu, kategori bulmaca, kelime eşleştirme, internetsiz kelime oyunu", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@id": "https://novayag.com/#kurulus"}, "publisher": {"@id": "https://novayag.com/#kurulus"}, "gamePlatform": "Android", "playMode": "SinglePlayer", "video": {"@type": "VideoObject", "name": "Kelime Eşle oynanış videosu", "description": "Kelime Eşle oyunundan kısa bir oynanış kaydı.", "thumbnailUrl": "https://novayag.com/media/og/kelime-esle.png", "contentUrl": "https://novayag.com/media/kelime-esle.mp4", "uploadDate": "2026-09-27"}}}, {"@type": "ListItem", "position": 2, "item": {"@type": ["MobileApplication", "VideoGame"], "@id": "https://novayag.com/oyunlar/kare-bulmaca/#uygulama", "name": "Kare Bulmaca: Çapraz Bulmaca", "alternateName": "Kare Bulmaca", "description": "Kare Bulmaca, Türkçe hazırlanmış çapraz (kare) bulmaca uygulaması. Mini 5×5'ten büyük 9×9'a üç boyutta, kolaydan zora sıralanmış bulmacalar ve takıldığında yol gösteren ipuçları sunar.", "url": "https://novayag.com/oyunlar/kare-bulmaca/", "image": "https://novayag.com/media/ikon/kare-bulmaca.png", "operatingSystem": "Android", "applicationCategory": "GameApplication", "genre": "Bulmaca", "inLanguage": "tr", "isAccessibleForFree": true, "keywords": "kare bulmaca, çapraz bulmaca, Türkçe bulmaca uygulaması, internetsiz bulmaca", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@id": "https://novayag.com/#kurulus"}, "publisher": {"@id": "https://novayag.com/#kurulus"}, "gamePlatform": "Android", "playMode": "SinglePlayer", "video": {"@type": "VideoObject", "name": "Kare Bulmaca oynanış videosu", "description": "Kare Bulmaca oyunundan kısa bir oynanış kaydı.", "thumbnailUrl": "https://novayag.com/media/og/kare-bulmaca.png", "contentUrl": "https://novayag.com/media/kare-bulmaca.mp4", "uploadDate": "2026-09-27"}}}, {"@type": "ListItem", "position": 3, "item": {"@type": ["MobileApplication", "VideoGame"], "@id": "https://novayag.com/oyunlar/petek/#uygulama", "name": "Petek: Günlük Kelime Oyunu", "alternateName": "Petek", "description": "Petek, her gün yeni bir bulmaca sunan Türkçe bir kelime türetme oyunu. Yedi harfli peteğin ortasındaki harfi kullanarak bulabildiğin kadar kelime türetirsin; günün peteği herkes için aynıdır.", "url": "https://novayag.com/oyunlar/petek/", "image": "https://novayag.com/media/ikon/petek.png", "operatingSystem": "Android", "applicationCategory": "GameApplication", "genre": "Kelime · Günlük", "inLanguage": "tr", "isAccessibleForFree": true, "keywords": "günlük kelime oyunu, Türkçe Spelling Bee, kelime türetme, harflerden kelime bulma", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@id": "https://novayag.com/#kurulus"}, "publisher": {"@id": "https://novayag.com/#kurulus"}, "gamePlatform": "Android", "playMode": "SinglePlayer", "video": {"@type": "VideoObject", "name": "Petek oynanış videosu", "description": "Petek oyunundan kısa bir oynanış kaydı.", "thumbnailUrl": "https://novayag.com/media/og/petek.png", "contentUrl": "https://novayag.com/media/petek.mp4", "uploadDate": "2026-09-27"}}}, {"@type": "ListItem", "position": 4, "item": {"@type": ["MobileApplication", "VideoGame"], "@id": "https://novayag.com/oyunlar/cengel-bulmaca/#uygulama", "name": "Çengel Bulmaca: Klasik", "alternateName": "Çengel Bulmaca", "description": "Çengel Bulmaca, klasik gazete çengel bulmacasını büyük puntolu ve yüksek kontrastlı bir tasarımla sunan Türkçe bulmaca uygulaması. Izgara dört kata kadar büyütülebilir; hesap açmadan hemen çözmeye başlanır.", "url": "https://novayag.com/oyunlar/cengel-bulmaca/", "image": "https://novayag.com/media/ikon/cengel.png", "operatingSystem": "Android", "applicationCategory": "GameApplication", "genre": "Bulmaca", "inLanguage": "tr", "isAccessibleForFree": true, "keywords": "çengel bulmaca, büyük puntolu bulmaca, gazete bulmacası, yaşlılar için bulmaca", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@id": "https://novayag.com/#kurulus"}, "publisher": {"@id": "https://novayag.com/#kurulus"}, "gamePlatform": "Android", "playMode": "SinglePlayer", "installUrl": "https://play.google.com/store/apps/details?id=com.novayag.cengel", "sameAs": ["https://play.google.com/store/apps/details?id=com.novayag.cengel"], "video": {"@type": "VideoObject", "name": "Çengel Bulmaca oynanış videosu", "description": "Çengel Bulmaca oyunundan kısa bir oynanış kaydı.", "thumbnailUrl": "https://novayag.com/media/og/cengel-bulmaca.png", "contentUrl": "https://novayag.com/media/cengel.mp4", "uploadDate": "2026-09-27"}}}, {"@type": "ListItem", "position": 5, "item": {"@type": ["MobileApplication", "VideoGame"], "@id": "https://novayag.com/oyunlar/kelime-yarisi/#uygulama", "name": "Kelime Yarışı: Kelime Oyunu", "alternateName": "Kelime Yarışı", "description": "Kelime Yarışı, masadaki herkesin aynı dokuz harften aynı anda kelime türettiği gerçek zamanlı bir Türkçe kelime oyunu. Bir kelimeyi yalnızca ilk gönderen alır; kelime uzadıkça puan büyür.", "url": "https://novayag.com/oyunlar/kelime-yarisi/", "image": "https://novayag.com/media/ikon/kelime-yarisi.png", "operatingSystem": "Android", "applicationCategory": "GameApplication", "genre": "Kelime · Online", "inLanguage": "tr", "isAccessibleForFree": true, "keywords": "online kelime oyunu, çok oyunculu kelime oyunu, kelime kapmaca, Türkçe kelime yarışması", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@id": "https://novayag.com/#kurulus"}, "publisher": {"@id": "https://novayag.com/#kurulus"}, "gamePlatform": "Android", "playMode": "MultiPlayer", "installUrl": "https://play.google.com/store/apps/details?id=com.yagiz.kelimekapmaca", "sameAs": ["https://play.google.com/store/apps/details?id=com.yagiz.kelimekapmaca"], "video": {"@type": "VideoObject", "name": "Kelime Yarışı oynanış videosu", "description": "Kelime Yarışı oyunundan kısa bir oynanış kaydı.", "thumbnailUrl": "https://novayag.com/media/og/kelime-yarisi.png", "contentUrl": "https://novayag.com/media/kelime-yarisi.mp4", "uploadDate": "2026-09-27"}}}, {"@type": "ListItem", "position": 6, "item": {"@type": ["MobileApplication", "VideoGame"], "@id": "https://novayag.com/oyunlar/issiz-ada/#uygulama", "name": "Issız Ada - Online Atış Oyunları", "alternateName": "Issız Ada", "description": "Issız Ada, ıssız bir adada karşındaki rakiple kapıştığın fizik tabanlı, çevrim içi bir atış oyunu. Kum torbasıyla labut devirir ya da ahşap çubuk fırlatıp raflardaki topları düşürürsün.", "url": "https://novayag.com/oyunlar/issiz-ada/", "image": "https://novayag.com/media/ikon/issizada.png", "operatingSystem": "Android", "applicationCategory": "GameApplication", "genre": "Atış · Online", "inLanguage": "tr", "isAccessibleForFree": true, "keywords": "online atış oyunu, labut devirme oyunu, iki kişilik online oyun, fizik tabanlı oyun", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "TRY"}, "author": {"@id": "https://novayag.com/#kurulus"}, "publisher": {"@id": "https://novayag.com/#kurulus"}, "gamePlatform": "Android", "playMode": "MultiPlayer", "installUrl": "https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada", "sameAs": ["https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada"]}}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Novayag hangi oyunları yapıyor?", "acceptedAnswer": {"@type": "Answer", "text": "Kelime Eşle (kelime gruplama), Kare Bulmaca (çapraz bulmaca), Petek (günlük kelime türetme), Çengel Bulmaca (büyük puntolu klasik bulmaca), Kelime Yarışı (online kelime yarışması) ve Issız Ada (online atış oyunu). Hepsi Türkçe ve ücretsiz."}}, {"@type": "Question", "name": "İnternetsiz oynanabilen Türkçe kelime ve bulmaca oyunu hangisi?", "acceptedAnswer": {"@type": "Answer", "text": "Kelime Eşle, Petek, Kare Bulmaca ve Çengel Bulmaca internet olmadan oynanır; bölümler ve bulmacalar telefona yüklü gelir."}}, {"@type": "Question", "name": "Arkadaşlarla online oynanan Türkçe kelime oyunu var mı?", "acceptedAnswer": {"@type": "Answer", "text": "Kelime Yarışı'nda masadaki herkes aynı dokuz harften aynı anda kelime türetir; bir kelimeyi ilk gönderen alır. Rakip yoksa botlar devreye girer."}}, {"@type": "Question", "name": "Wordle ya da Spelling Bee gibi günlük Türkçe kelime oyunu önerir misin?", "acceptedAnswer": {"@type": "Answer", "text": "Petek her gün yenilenen, herkes için aynı bir bulmaca sunar: yedi harf, ortadaki zorunlu harf, pangram, rütbeler ve rozetler."}}, {"@type": "Question", "name": "Yaşlılar için büyük puntolu bulmaca uygulaması hangisi?", "acceptedAnswer": {"@type": "Answer", "text": "Çengel Bulmaca büyük punto, yüksek kontrast ve dört kata kadar büyütmeyle göz yormadan çözmek için tasarlandı."}}, {"@type": "Question", "name": "Oyunlar ücretli mi, üyelik gerekiyor mu?", "acceptedAnswer": {"@type": "Answer", "text": "Hepsi ücretsizdir ve hesap açtırmaz. Reklam içerirler; oyun ilerlemesi yalnızca telefonda saklanır."}}, {"@type": "Question", "name": "iPhone'da oynanabilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Şimdilik Android'de, Google Play'de. App Store sürümleri yakında."}}]}]}</script>
+<!-- /seo:jsonld -->
 </head>
 <body>
 
@@ -474,7 +494,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       </section>
 
       <section class="panel" data-index="1">
-        <div class="game-id"><img class="icon-lg" src="media/ikon/kelime-esle.png" alt="" width="64" height="64"><span class="game-name">Kelime Eşle</span></div>
+        <div class="game-id"><img class="icon-lg" src="media/ikon/kelime-esle.png" alt="" width="64" height="64"><a class="game-name" href="/oyunlar/kelime-esle/">Kelime Eşle</a></div>
         <span class="eyebrow">Kelime · Tek kişilik · Yakında</span>
         <h2>Kelimeleri<br><em>doğru gruba</em> topla.</h2>
         <p class="lede">Balonlardaki kelimeleri kategorilerine göre birleştir, grup tamamlanınca patlat. "Mısır" ülke mi, tahıl mı? Bölümler ilerledikçe birbirine yakın kategoriler aynı tahtaya gelir.</p>
@@ -484,11 +504,12 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
             <svg class="gp" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2Z" fill="#4285F4"/><path d="M3.6 1.8c.4-.2.9-.2 1.4.1l11.8 7.2-3.3 2.9Z" fill="#34A853"/><path d="M3.6 22.2 13.5 12l3.3 2.9L5 22.1c-.5.3-1 .3-1.4.1Z" fill="#EA4335"/><path d="m16.8 9.1 3.6 2.1c.7.4.7 1.2 0 1.6l-3.6 2.1-3.3-2.9Z" fill="#FBBC04"/></svg>
             Google Play'de aç
           </a>
+          <a class="more" href="/oyunlar/kelime-esle/">Oyunu tanı →</a>
         </div>
       </section>
 
       <section class="panel" data-index="2">
-        <div class="game-id"><img class="icon-lg" src="media/ikon/kare-bulmaca.png" alt="" width="64" height="64"><span class="game-name">Kare Bulmaca</span></div>
+        <div class="game-id"><img class="icon-lg" src="media/ikon/kare-bulmaca.png" alt="" width="64" height="64"><a class="game-name" href="/oyunlar/kare-bulmaca/">Kare Bulmaca</a></div>
         <span class="eyebrow">Bulmaca · Tek kişilik · Yakında</span>
         <h2>Gazetedeki<br><em>çapraz bulmaca</em>.</h2>
         <p class="lede">Mini 5×5'ten büyük 9×9'a, kolaydan zora sıralanmış Türkçe bulmacalar. Takılınca kelimenin örnek cümlesini gör, harf ya da kelime aç.</p>
@@ -498,11 +519,12 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
             <svg class="gp" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2Z" fill="#4285F4"/><path d="M3.6 1.8c.4-.2.9-.2 1.4.1l11.8 7.2-3.3 2.9Z" fill="#34A853"/><path d="M3.6 22.2 13.5 12l3.3 2.9L5 22.1c-.5.3-1 .3-1.4.1Z" fill="#EA4335"/><path d="m16.8 9.1 3.6 2.1c.7.4.7 1.2 0 1.6l-3.6 2.1-3.3-2.9Z" fill="#FBBC04"/></svg>
             Google Play'de aç
           </a>
+          <a class="more" href="/oyunlar/kare-bulmaca/">Oyunu tanı →</a>
         </div>
       </section>
 
       <section class="panel" data-index="3">
-        <div class="game-id"><img class="icon-lg" src="media/ikon/petek.png" alt="" width="64" height="64"><span class="game-name">Petek</span></div>
+        <div class="game-id"><img class="icon-lg" src="media/ikon/petek.png" alt="" width="64" height="64"><a class="game-name" href="/oyunlar/petek/">Petek</a></div>
         <span class="eyebrow">Kelime · Günlük · Yakında</span>
         <h2>Yedi harf,<br><em>her gün</em> yeni petek.</h2>
         <p class="lede">Ortadaki harfi kullanarak bulabildiğin kadar kelime türet. Günün peteği herkes için aynı; buldukça Yavru Arı'dan Kraliçe Arı'ya yüksel.</p>
@@ -512,11 +534,12 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
             <svg class="gp" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2Z" fill="#4285F4"/><path d="M3.6 1.8c.4-.2.9-.2 1.4.1l11.8 7.2-3.3 2.9Z" fill="#34A853"/><path d="M3.6 22.2 13.5 12l3.3 2.9L5 22.1c-.5.3-1 .3-1.4.1Z" fill="#EA4335"/><path d="m16.8 9.1 3.6 2.1c.7.4.7 1.2 0 1.6l-3.6 2.1-3.3-2.9Z" fill="#FBBC04"/></svg>
             Google Play'de aç
           </a>
+          <a class="more" href="/oyunlar/petek/">Oyunu tanı →</a>
         </div>
       </section>
 
       <section class="panel" data-index="4">
-        <div class="game-id"><img class="icon-lg" src="media/ikon/cengel.png" alt="" width="64" height="64"><span class="game-name">Çengel Bulmaca</span></div>
+        <div class="game-id"><img class="icon-lg" src="media/ikon/cengel.png" alt="" width="64" height="64"><a class="game-name" href="/oyunlar/cengel-bulmaca/">Çengel Bulmaca</a></div>
         <span class="eyebrow">Bulmaca · Tek kişilik</span>
         <h2>Her güne<br><em>bir bulmaca</em>.</h2>
         <p class="lede">Klasik gazete çengel bulmacası, gözünüzü yormadan. Büyük punto, yüksek kontrast, dört kata kadar büyütme. Hesap açmak yok — açın ve çözmeye başlayın.</p>
@@ -526,11 +549,12 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
             <svg class="gp" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2Z" fill="#4285F4"/><path d="M3.6 1.8c.4-.2.9-.2 1.4.1l11.8 7.2-3.3 2.9Z" fill="#34A853"/><path d="M3.6 22.2 13.5 12l3.3 2.9L5 22.1c-.5.3-1 .3-1.4.1Z" fill="#EA4335"/><path d="m16.8 9.1 3.6 2.1c.7.4.7 1.2 0 1.6l-3.6 2.1-3.3-2.9Z" fill="#FBBC04"/></svg>
             Google Play'de aç
           </a>
+          <a class="more" href="/oyunlar/cengel-bulmaca/">Oyunu tanı →</a>
         </div>
       </section>
 
       <section class="panel" data-index="5">
-        <div class="game-id"><img class="icon-lg" src="media/ikon/kelime-yarisi.png" alt="" width="64" height="64"><span class="game-name">Kelime Yarışı</span></div>
+        <div class="game-id"><img class="icon-lg" src="media/ikon/kelime-yarisi.png" alt="" width="64" height="64"><a class="game-name" href="/oyunlar/kelime-yarisi/">Kelime Yarışı</a></div>
         <span class="eyebrow">Kelime · <span lang="en">Online</span></span>
         <h2>Dokuz harf.<br><em>İlk kapan alır</em>.</h2>
         <p class="lede">Sayılı saniye içinde kelimeyi bulun ve önce siz kapın. Rakipler gerçek zamanlı; masa boşsa insan temposunda oynayan botlar devreye giriyor, beklemiyorsunuz.</p>
@@ -540,26 +564,39 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
             <svg class="gp" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2Z" fill="#4285F4"/><path d="M3.6 1.8c.4-.2.9-.2 1.4.1l11.8 7.2-3.3 2.9Z" fill="#34A853"/><path d="M3.6 22.2 13.5 12l3.3 2.9L5 22.1c-.5.3-1 .3-1.4.1Z" fill="#EA4335"/><path d="m16.8 9.1 3.6 2.1c.7.4.7 1.2 0 1.6l-3.6 2.1-3.3-2.9Z" fill="#FBBC04"/></svg>
             Google Play'de aç
           </a>
+          <a class="more" href="/oyunlar/kelime-yarisi/">Oyunu tanı →</a>
         </div>
       </section>
 
       <section class="panel" data-index="6">
-        <div class="game-id"><img class="icon-lg" src="media/ikon/issizada.png" alt="" width="64" height="64"><span class="game-name">Issız Ada</span></div>
+        <div class="game-id"><img class="icon-lg" src="media/ikon/issizada.png" alt="" width="64" height="64"><a class="game-name" href="/oyunlar/issiz-ada/">Issız Ada</a></div>
         <span class="eyebrow">Atış · <span lang="en">Online</span></span>
         <h2>Kumsalda<br><em>karşılıklı atış</em>.</h2>
         <p class="lede">Kum torbasıyla masadaki labutları devirin ya da çubuk fırlatıp raflardaki topları düşürün. Rastgele eşleşin, ya da oda kodunu paylaşıp arkadaşınızla oynayın.</p>
-        <ul class="chips"><li>İki oyun modu</li><li>Online eşleşme</li><li>Oda koduyla arkadaş maçı</li><li>tr · en · ru</li></ul>
+        <ul class="chips"><li>İki oyun modu</li><li>Online eşleşme</li><li>Oda koduyla arkadaş maçı</li><li>Türkçe · İngilizce</li></ul>
         <div class="actions">
           <a class="btn" href="https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada">
             <svg class="gp" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.6 1.8 13.5 12 3.6 22.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2Z" fill="#4285F4"/><path d="M3.6 1.8c.4-.2.9-.2 1.4.1l11.8 7.2-3.3 2.9Z" fill="#34A853"/><path d="M3.6 22.2 13.5 12l3.3 2.9L5 22.1c-.5.3-1 .3-1.4.1Z" fill="#EA4335"/><path d="m16.8 9.1 3.6 2.1c.7.4.7 1.2 0 1.6l-3.6 2.1-3.3-2.9Z" fill="#FBBC04"/></svg>
             Google Play'de aç
           </a>
+          <a class="more" href="/oyunlar/issiz-ada/">Oyunu tanı →</a>
         </div>
       </section>
 
     </div>
   </div>
 </main>
+
+<section class="wrap faq" id="sss" aria-labelledby="sss-baslik">
+  <h2 id="sss-baslik">Sık sorulan sorular</h2>
+  <details><summary>Novayag hangi oyunları yapıyor?</summary><p>Kelime Eşle (kelime gruplama), Kare Bulmaca (çapraz bulmaca), Petek (günlük kelime türetme), Çengel Bulmaca (büyük puntolu klasik bulmaca), Kelime Yarışı (online kelime yarışması) ve Issız Ada (online atış oyunu). Hepsi Türkçe ve ücretsiz.</p></details>
+<details><summary>İnternetsiz oynanabilen Türkçe kelime ve bulmaca oyunu hangisi?</summary><p>Kelime Eşle, Petek, Kare Bulmaca ve Çengel Bulmaca internet olmadan oynanır; bölümler ve bulmacalar telefona yüklü gelir.</p></details>
+<details><summary>Arkadaşlarla online oynanan Türkçe kelime oyunu var mı?</summary><p>Kelime Yarışı&#x27;nda masadaki herkes aynı dokuz harften aynı anda kelime türetir; bir kelimeyi ilk gönderen alır. Rakip yoksa botlar devreye girer.</p></details>
+<details><summary>Wordle ya da Spelling Bee gibi günlük Türkçe kelime oyunu önerir misin?</summary><p>Petek her gün yenilenen, herkes için aynı bir bulmaca sunar: yedi harf, ortadaki zorunlu harf, pangram, rütbeler ve rozetler.</p></details>
+<details><summary>Yaşlılar için büyük puntolu bulmaca uygulaması hangisi?</summary><p>Çengel Bulmaca büyük punto, yüksek kontrast ve dört kata kadar büyütmeyle göz yormadan çözmek için tasarlandı.</p></details>
+<details><summary>Oyunlar ücretli mi, üyelik gerekiyor mu?</summary><p>Hepsi ücretsizdir ve hesap açtırmaz. Reklam içerirler; oyun ilerlemesi yalnızca telefonda saklanır.</p></details>
+<details><summary>iPhone&#x27;da oynanabilir mi?</summary><p>Şimdilik Android&#x27;de, Google Play&#x27;de. App Store sürümleri yakında.</p></details>
+</section>
 
 <footer class="foot wrap" id="iletisim">
   <div class="foot__grid">
@@ -568,14 +605,14 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       <p>Android için küçük oyunlar. Bir hata bulursanız ya da bir fikriniz varsa yazın — hepsini okuyorum.</p>
     </div>
     <div>
-      <span class="eyebrow">Oyunlar</span>
+      <span class="eyebrow"><a href="/oyunlar/" style="opacity:1">Oyunlar</a></span>
       <ul>
-        <li><a href="https://play.google.com/store/apps/details?id=com.novayag.kelimeesle">Kelime Eşle</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.novayag.capraz">Kare Bulmaca</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.novayag.petek">Petek</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.novayag.cengel">Çengel Bulmaca</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.yagiz.kelimekapmaca">Kelime Yarışı</a></li>
-        <li><a href="https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada">Issız Ada</a></li>
+        <li><a href="/oyunlar/kelime-esle/">Kelime Eşle</a></li>
+        <li><a href="/oyunlar/kare-bulmaca/">Kare Bulmaca</a></li>
+        <li><a href="/oyunlar/petek/">Petek</a></li>
+        <li><a href="/oyunlar/cengel-bulmaca/">Çengel Bulmaca</a></li>
+        <li><a href="/oyunlar/kelime-yarisi/">Kelime Yarışı</a></li>
+        <li><a href="/oyunlar/issiz-ada/">Issız Ada</a></li>
       </ul>
     </div>
     <div>
@@ -583,6 +620,7 @@ h1,h2{margin:0;font-family:var(--round);font-weight:700;line-height:1.05;letter-
       <ul>
         <li><a href="mailto:yagizaydinli@novayag.com">yagizaydinli@novayag.com</a></li>
         <li><a href="/gizlilik/">Gizlilik politikası</a></li>
+        <li><a href="https://play.google.com/store/apps/developer?id=Novayag">Google Play'de Novayag</a></li>
       </ul>
     </div>
   </div>

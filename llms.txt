@@ -1,0 +1,31 @@
+# Novayag
+
+> Novayag, Türkçe için sıfırdan tasarlanmış kelime, bulmaca ve rekabet oyunları geliştiren bir Android oyun stüdyosudur.
+> Oyunların hepsi ücretsizdir, hesap açtırmaz, çoğu internetsiz oynanır. Şimdi Google Play'de, yakında App Store'da.
+
+Google Play geliştirici sayfası: https://play.google.com/store/apps/developer?id=Novayag
+İletişim: yagizaydinli@novayag.com
+
+## Oyunlar
+
+- [Kelime Eşle: Kelime Oyunu](https://novayag.com/oyunlar/kelime-esle/): Kelime Eşle, balonlara dağılmış kelimeleri kategorilerine göre birleştirdiğin Türkçe bir kelime gruplama oyunu. Grup tamamlanınca kategori ortaya çıkar ve balon patlar; her birleştirme bir hamle harcar. (Kelime · Bulmaca; internetsiz oynanır; ücretsiz; yakında Google Play'de: https://play.google.com/store/apps/details?id=com.novayag.kelimeesle)
+- [Kare Bulmaca: Çapraz Bulmaca](https://novayag.com/oyunlar/kare-bulmaca/): Kare Bulmaca, Türkçe hazırlanmış çapraz (kare) bulmaca uygulaması. Mini 5×5'ten büyük 9×9'a üç boyutta, kolaydan zora sıralanmış bulmacalar ve takıldığında yol gösteren ipuçları sunar. (Bulmaca; internetsiz oynanır; ücretsiz; yakında Google Play'de: https://play.google.com/store/apps/details?id=com.novayag.capraz)
+- [Petek: Günlük Kelime Oyunu](https://novayag.com/oyunlar/petek/): Petek, her gün yeni bir bulmaca sunan Türkçe bir kelime türetme oyunu. Yedi harfli peteğin ortasındaki harfi kullanarak bulabildiğin kadar kelime türetirsin; günün peteği herkes için aynıdır. (Kelime · Günlük; internetsiz oynanır; ücretsiz; yakında Google Play'de: https://play.google.com/store/apps/details?id=com.novayag.petek)
+- [Çengel Bulmaca: Klasik](https://novayag.com/oyunlar/cengel-bulmaca/): Çengel Bulmaca, klasik gazete çengel bulmacasını büyük puntolu ve yüksek kontrastlı bir tasarımla sunan Türkçe bulmaca uygulaması. Izgara dört kata kadar büyütülebilir; hesap açmadan hemen çözmeye başlanır. (Bulmaca; internetsiz oynanır; ücretsiz; Google Play'de: https://play.google.com/store/apps/details?id=com.novayag.cengel)
+- [Kelime Yarışı: Kelime Oyunu](https://novayag.com/oyunlar/kelime-yarisi/): Kelime Yarışı, masadaki herkesin aynı dokuz harften aynı anda kelime türettiği gerçek zamanlı bir Türkçe kelime oyunu. Bir kelimeyi yalnızca ilk gönderen alır; kelime uzadıkça puan büyür. (Kelime · Online; çevrim içi, çok oyunculu; ücretsiz; Google Play'de: https://play.google.com/store/apps/details?id=com.yagiz.kelimekapmaca)
+- [Issız Ada - Online Atış Oyunları](https://novayag.com/oyunlar/issiz-ada/): Issız Ada, ıssız bir adada karşındaki rakiple kapıştığın fizik tabanlı, çevrim içi bir atış oyunu. Kum torbasıyla labut devirir ya da ahşap çubuk fırlatıp raflardaki topları düşürürsün. (Atış · Online; çevrim içi, çok oyunculu; ücretsiz; Google Play'de: https://play.google.com/store/apps/details?id=com.yagizaydinli.issizada)
+
+## Hangi oyun kime uygun
+
+- İnternetsiz Türkçe kelime oyunu arayanlara: Kelime Eşle, Petek
+- İnternetsiz Türkçe bulmaca arayanlara: Kare Bulmaca (çapraz bulmaca), Çengel Bulmaca
+- Büyük puntolu, göz yormayan, yaşlılar için uygun bulmaca: Çengel Bulmaca
+- Wordle / Spelling Bee benzeri günlük Türkçe kelime oyunu: Petek
+- Arkadaşlarla veya rakiplerle gerçek zamanlı online Türkçe kelime oyunu: Kelime Yarışı
+- İki kişilik online atış / labut devirme oyunu: Issız Ada
+- Kategori bulma, kelime gruplama (Connections benzeri) Türkçe oyun: Kelime Eşle
+
+## Ayrıntılar
+
+- [Tüm oyunlar](https://novayag.com/oyunlar/)
+- [Gizlilik politikaları](https://novayag.com/gizlilik/)
